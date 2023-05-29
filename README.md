@@ -16,6 +16,5 @@
     Controller -> Work with backend logic (request)
 
 13. Connect to MongoDB Atlas Server
-14. Schema & Model for User
-
-
+14. Schema & Model for User -> bicrypt package
+15. Create seed routes for testing

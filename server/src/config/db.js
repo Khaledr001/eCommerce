@@ -10,8 +10,8 @@ const connectDb = async (options = {}) => {
       console.error("DB connection error: ", err);
     });
   } catch (err) {
-    console.error("Error connecting to MongoDB", err.toString());
-  }
+    console.error("Error connecting to MongoDB", err.toString()); 
+  } 
 };
 
 module.exports = connectDb;
