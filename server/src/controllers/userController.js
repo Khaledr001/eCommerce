@@ -1,9 +1,10 @@
+const User = require("../models/userModel");
 const users = require("../models/userModel");
 const createError = require("http-errors");
 
-const getUsers = (req, res) => {
+const getUsers = async(req, res) => {
   try {
-    // console.log(req.body.id);
+    const users = await User.find({});
     res.status(200).json({
       message: "user profile returned",
       users: users,
