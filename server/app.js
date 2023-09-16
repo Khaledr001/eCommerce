@@ -7,6 +7,7 @@ const catagoryRouter = require("./routers/catagoryRouter");
 const productRouter = require("./routers/productRouter");
 const createError = require('http-errors');
 const authRouter = require("./routers/authRouter");
+const addressRouter = require("./routers/addressRouter");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(cookieParser());
 
 app.use("/seed/user", seedRouter);
 app.use("/api/users", userRouter);
+app.use("/api/user/address", addressRouter)
 app.use("/api/catagory", catagoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/auth", authRouter);

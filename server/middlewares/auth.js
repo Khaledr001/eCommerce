@@ -16,7 +16,8 @@ const isLoggedIn = async (req, res, next) => {
       throw createError(401, "Invalid access token please login again");
     }
     req.user = decoded.payload;
-    // console.log(decoded.payload);
+    console.log("user already logged in");
+
     next();
   } catch (error) {
     return next(error);
