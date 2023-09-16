@@ -1,9 +1,11 @@
 require('dotenv').config();
 
 
-
 const serverPort = process.env.SERVER_PORT || 6001;
 const mongoDbLocalUrl = process.env.MONGODB_LOCAL_URL;
-const defaultImagePath = './public/images/users/defaultImage.png';
+const defaultUserImagePath = './public/images/users';
+const defaultProductImagePath = './public/images/products';
+const fileSize = Number(process.env.FILE_SIZE) || 3145728;
+const allowedFile = process.env.ALLOWED_FILE || ['jpg', 'png', 'jpeg'];
 
-module.exports = {serverPort, mongoDbLocalUrl, defaultImagePath};  
+module.exports = { serverPort, mongoDbLocalUrl, defaultUserImagePath, defaultProductImagePath, fileSize, allowedFile };  

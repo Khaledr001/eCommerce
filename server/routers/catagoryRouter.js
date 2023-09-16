@@ -13,13 +13,14 @@ const {
 const catagoryRouter = express.Router();
 
 catagoryRouter.post("/add", validateCatagory, runValidation, createCatagory);
+catagoryRouter.get("/getall", getAllCatagory);
 
 catagoryRouter.get("/:slug", validateCatagory, runValidation, getACatagory);
 
-catagoryRouter.get("/getall", getAllCatagory);
 
 catagoryRouter.put("/update/:slug", updateCatagory);
 
 catagoryRouter.delete("/delete/:slug", deleteCatagory);
 
 module.exports = catagoryRouter;
+ 

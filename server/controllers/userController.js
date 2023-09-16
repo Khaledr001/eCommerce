@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { successResponse, errorResponse } = require("./responseController");
 const User = require("../models/User");
+const { defaultUserImagePath } = require("../secret");
 
 
 // New user registration
@@ -10,13 +11,18 @@ const userRegester = async (req, res, next) => {
   try {
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
-
+    const imageName = req?.file?.filename; 
+    let imagePath = "";
+    if (imageName) {
+      imagePath = `${defaultUserImagePath}/${imageName}`;
+    }
     const userObj = {
-      name: req.body.name,
+      name: req?.body?.name,
       email: req.body.email,
       phoneNumber: req.body.phoneNumber,
       age: req.body.age,
       password: hashPassword,
+      image: imagePath,
       role: req.body.role,
     };
 

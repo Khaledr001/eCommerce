@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const { errorResponse } = require("../controllers/responseController");
+const createError = require('http-errors');
 
 const runValidation = async (req, res, next) => {
   try {
@@ -14,10 +15,7 @@ const runValidation = async (req, res, next) => {
 
     return next();
   } catch (error) {
-    errorResponse(res, {
-      statusCode: 500,
-      message: "Something went wrong1",
-    });
+    createError(500, "Something went wrong");
   }
 };
 

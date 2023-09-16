@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const { defaultImagePath } = require("../secret");
+let { defaultUserImagePath } = require("../secret");
+defaultUserImagePath = defaultUserImagePath + "/defaultImage.png";
 
 const validateEmail = function (email) {
   let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -39,7 +40,7 @@ const UserSchema = new mongoose.Schema(
     image: {
       type: String,
       required: [true, "Please provide a image"],
-      default: defaultImagePath,
+      default: defaultUserImagePath,
     },
     isBaned: {
       type: Boolean,
