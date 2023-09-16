@@ -1,14 +1,20 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 const { successResponse, errorResponse } = require("./responseController");
 const User = require("../models/User");
 const { defaultUserImagePath } = require("../secret");
-
+const { createJsonToken } = require("../helper/jsonWebToken");
+// const createError = requre("http-errors")
 
 // New user registration
 const userRegester = async (req, res, next) => {
   try {
+    const { name, email, password, phoneNumber } = req.body;
+    const userExists = await User.exists(email);
+    if (userExists) {
+      throw createError(409, "User already exists");
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, salt);
     const imageName = req?.file?.filename; 
@@ -17,10 +23,10 @@ const userRegester = async (req, res, next) => {
       imagePath = `${defaultUserImagePath}/${imageName}`;
     }
     const userObj = {
-      name: req?.body?.name,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      age: req.body.age,
+      name,
+      email,
+      phoneNumber,
+      age: req?.body?.age,
       password: hashPassword,
       image: imagePath,
       role: req.body.role,
@@ -40,7 +46,7 @@ const userRegester = async (req, res, next) => {
           message: "Something went wrong"
       });
   }
-};
+}
 
 // Get all users from the database
 const getAllUser = async (req, res, next) => { 
@@ -120,4 +126,9 @@ const deleteUser = async (req, res, next) => {
   }
 }
 
-module.exports = { userRegester, getAllUser, updateUser, deleteUser };
+module.exports = {
+  userRegester,
+  getAllUser,
+  updateUser,
+  deleteUser,
+};

@@ -9,18 +9,19 @@ const {
   updateCatagory,
   deleteCatagory,
 } = require("../controllers/catagoryController");
+const { isLoggedIn, isAdmin } = require("../middlewares/auth");
 
 const catagoryRouter = express.Router();
 
-catagoryRouter.post("/add", validateCatagory, runValidation, createCatagory);
+catagoryRouter.post("/add", isLoggedIn, isAdmin, validateCatagory, runValidation, createCatagory);
 catagoryRouter.get("/getall", getAllCatagory);
 
 catagoryRouter.get("/:slug", validateCatagory, runValidation, getACatagory);
 
 
-catagoryRouter.put("/update/:slug", updateCatagory);
+catagoryRouter.put("/update/:slug", isLoggedIn, isAdmin, updateCatagory);
 
-catagoryRouter.delete("/delete/:slug", deleteCatagory);
+catagoryRouter.delete("/delete/:slug", isLoggedIn, isAdmin, deleteCatagory);
 
 module.exports = catagoryRouter;
  

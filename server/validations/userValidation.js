@@ -28,4 +28,6 @@ const validateUserRegistration = [
     .withMessage("Phone number should be 11 characters long"),
 ];
 
+
+
 module.exports = { validateUserRegistration };

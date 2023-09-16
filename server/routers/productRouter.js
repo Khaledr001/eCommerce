@@ -9,11 +9,14 @@ const {
   deleteProduct,
 } = require("../controllers/productController");
 const upload = require("../middlewares/uploadProductImage");
+const { isLoggedIn, isAdmin } = require("../middlewares/auth");
 
 const productRouter = express.Router();
 
 productRouter.post(
   "/add",
+  isLoggedIn,
+  isAdmin,
   upload.single("image"),
   validateAddProduct,
   runValidation,
@@ -22,7 +25,7 @@ productRouter.post(
 
 productRouter.get("/getall", getAllProduct);
 productRouter.get("/:id", getAProduct);
-productRouter.put("/:id", updateProduct);
-productRouter.delete("/:id", deleteProduct);
+productRouter.put("/:id", isLoggedIn, isAdmin, updateProduct);
+productRouter.delete("/:id", isLoggedIn, isAdmin, deleteProduct);
 
 module.exports = productRouter;

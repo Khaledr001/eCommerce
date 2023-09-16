@@ -39,7 +39,7 @@ const getAllCatagory = async (req, res, next) => {
         message: "No catagory found",
       });
     } else {
-      successResponse(res, {
+      successResponse(res, { 
         statusCode: 200,
         message: "Catagory found",
         payload: { catagory },

@@ -42,7 +42,7 @@ const UserSchema = new mongoose.Schema(
       required: [true, "Please provide a image"],
       default: defaultUserImagePath,
     },
-    isBaned: {
+    isBanned: {
       type: Boolean,
       default: false,
     },

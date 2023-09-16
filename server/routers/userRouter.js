@@ -8,21 +8,23 @@ const {
 const { validateUserRegistration } = require("../validations/userValidation");
 const { runValidation } = require("../validations/checkValidationRules");
 const upload = require("../middlewares/uploadFile");
+const { isLoggedIn, isLoggedOut, isAdmin } = require("../middlewares/auth");
 
 const userRouter = express.Router();
 
 userRouter.post(
   "/register",
+  isLoggedOut,
   upload.single("image"), 
   validateUserRegistration,
   runValidation,
   userRegester
 );
 
-userRouter.get("/allusers", getAllUser);
+userRouter.get("/allusers", isLoggedIn, isAdmin, getAllUser);
 
-userRouter.put("/update/:id", updateUser);
+userRouter.put("/update/:id", isLoggedIn, updateUser);
 
-userRouter.delete("/delete/:id", deleteUser);
+userRouter.delete("/delete/:id", isLoggedIn, deleteUser);
 
 module.exports = userRouter;
