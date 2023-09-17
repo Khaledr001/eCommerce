@@ -8,6 +8,7 @@ const productRouter = require("./routers/productRouter");
 const createError = require('http-errors');
 const authRouter = require("./routers/authRouter");
 const addressRouter = require("./routers/addressRouter");
+const orderRouter = require("./routers/orderRouter");
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use("/api/user/address", addressRouter)
 app.use("/api/catagory", catagoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/order", orderRouter);
 
 app.use((req, res, next) => {
     next(createError(404, "route not found"));
