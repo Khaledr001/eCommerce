@@ -4,6 +4,7 @@ const {
   getAllUser,
   updateUser,
   deleteUser,
+  getAUser,
 } = require("../controllers/userController");
 const { validateUserRegistration } = require("../validations/userValidation");
 const { runValidation } = require("../validations/checkValidationRules");
@@ -22,6 +23,8 @@ userRouter.post(
 );
 
 userRouter.get("/allusers", isLoggedIn, isAdmin, getAllUser);
+
+userRouter.get("/:id", isLoggedIn, getAUser);
 
 userRouter.put("/update/:id", isLoggedIn, updateUser);
 

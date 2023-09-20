@@ -4,6 +4,7 @@ const Product = require("../models/Product");
 const Catagory = require("../models/Catagory");
 const { defaultProductImagePath } = require("../secret");
 const createError = require("http-errors");
+const paginator = require("../service/pagination");
 
 // add new Product
 const createProduct = async (req, res, next) => {
@@ -61,7 +62,11 @@ const createProduct = async (req, res, next) => {
 
 const getAllProduct = async (req, res, next) => {
   try {
-    const products = await Product.find({});
+    const pageSize = req?.query?.pageSize ?? "10";
+    const currentPage = req?.query?.currentPage ?? "1";
+    const aggregator = paginator(currentPage, pageSize);
+    const products = await Product.aggregate(aggregator);
+    // const products = await Product.find({});
     console.log("Product");
     if (!products) {
       errorResponse(res, {
