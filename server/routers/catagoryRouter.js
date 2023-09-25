@@ -14,6 +14,7 @@ const { isLoggedIn, isAdmin } = require("../middlewares/auth");
 const catagoryRouter = express.Router();
 
 catagoryRouter.post("/add", isLoggedIn, isAdmin, validateCatagory, runValidation, createCatagory);
+
 catagoryRouter.get("/getall", getAllCatagory);
 
 catagoryRouter.get("/:slug", validateCatagory, runValidation, getACatagory);

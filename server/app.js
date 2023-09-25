@@ -9,11 +9,19 @@ const createError = require('http-errors');
 const authRouter = require("./routers/authRouter");
 const addressRouter = require("./routers/addressRouter");
 const orderRouter = require("./routers/orderRouter");
+const cors = require("cors");
+const fileRouter = require("./routers/fileRouter");
 
 const app = express();
 
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(morgan("dev"));
-app.use(express.json());
+app.use(express.json()); 
 app.use(cookieParser());
 
 
@@ -24,6 +32,7 @@ app.use("/api/catagory", catagoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/order", orderRouter);
+app.use("/api/file", fileRouter);
 
 app.use((req, res, next) => {
     next(createError(404, "route not found"));

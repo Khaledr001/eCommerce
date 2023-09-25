@@ -39,7 +39,7 @@ const UserSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: [true, "Please provide a image"],
+      // required: [true, "Please provide a image"],
       default: defaultUserImagePath,
     },
     isBanned: {

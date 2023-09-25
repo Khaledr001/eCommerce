@@ -16,7 +16,7 @@ const createCatagory = async (req, res, next) => {
 
     const catagory = await Catagory(catagoryObj);
     await catagory.save();
-
+    
     successResponse(res, {
       statusCode: 200,
       message: "User registered successfully",
@@ -44,6 +44,7 @@ const getAllCatagory = async (req, res, next) => {
         message: "Catagory found",
         payload: { catagory },
       });
+      // res.status(200).json(catagory);
     }
   } catch (error) {
     errorResponse(res, {

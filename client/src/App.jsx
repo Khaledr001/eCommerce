@@ -1,18 +1,11 @@
 import './App.css'
-import Navbar from './components/navbar'
-import Carousel from "./components/carousel";
-import Hero from './components/hero';
+import HomePage from './pages/homePage/home';
+import { AppRoutes } from './routes/appRoutes';
 
 function App() {
-
-
   return (
-    <>
-      {/* <h1>HI</h1> */}
-      <Navbar></Navbar>
-      <Carousel></Carousel>
-      <Hero />
-    </>
+    <AppRoutes />
+    // <HomePage />
   );
 }
 

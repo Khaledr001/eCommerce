@@ -11,18 +11,18 @@ const handleLogin = async (req, res, next) => {
     const { email, password } = req.body;
 
     // user exixtence is required
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }); 
     if (!user) {
-      return errorResponse(res, {
+      return errorResponse(res, { 
         statusCode: 404,
         message:
           "User does not exist with this email address. Please register fist",
       });
-    }
+    } 
 
     // Compare the password
     const isPasswordMatch = await bcrypt.compare(password, user.password);
-    if (!isPasswordMatch) {
+    if (!isPasswordMatch) { 
       return errorResponse(res, {
         statusCode: 401,
         message: "User email or password does not match",
@@ -37,21 +37,28 @@ const handleLogin = async (req, res, next) => {
     }
     // Create token and save in http-cookie
     const accessToken = createJsonWebToken(user, "2d");
-    res.cookie("accessToken", accessToken, {
-      maxAge: 2 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-    });
-
+    // res.cookie("accessToken", accessToken, {
+    //   maxAge: 2 * 24 * 60 * 60 * 1000,
+    //   httpOnly: true,
+    //   secure: true,
+    //   sameSite: "none",
+    // });
+    // console.log(accessToken);
     req.user = user;
-    // Login user successfully
+
+    
+    // const accessToke = req.cookies.accessToken;
+    console.log("Login successful");
+    // res.status(200).json(user);
+    // Login user successfully 
     successResponse(res, {
       statusCode: 200,
       message: "Login successful",
-      payload: user,
-    });
-  } catch (error) {
+      payload: {
+        accessToken,
+      },
+    }); 
+  } catch (error) { 
     createError(500, "Something went wrong");
   }
 };

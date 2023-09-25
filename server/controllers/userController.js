@@ -11,13 +11,15 @@ const paginator = require("../service/pagination");
 const userRegester = async (req, res, next) => {
   try {
     const { name, email, password, phoneNumber } = req.body;
-    const userExists = await User.exists(email);
+    // const userExists = await User.exists(email);
+    const userExists = await User.findOne({ email: email });
     if (userExists) {
       throw createError(409, "User already exists");
     }
+    const age = parseInt(req?.body?.age);
 
     const salt = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(req.body.password, salt);
+    const hashPassword = await bcrypt.hash(password, salt);
     const imageName = req?.file?.filename;
     let imagePath = "";
     if (imageName) {
@@ -27,15 +29,18 @@ const userRegester = async (req, res, next) => {
       name,
       email,
       phoneNumber,
-      age: req?.body?.age,
+      age,
       password: hashPassword,
       image: imagePath,
-      role: req.body.role,
+      role: req.body.role, 
     };
-
+    
     const user = await User(userObj);
     await user.save();
 
+    delete userObj.password;
+    
+    // console.log(user);
     successResponse(res, {
       statusCode: 200,
       message: "User registered successfully",
@@ -46,7 +51,7 @@ const userRegester = async (req, res, next) => {
       statusCode: 500,
       message: "Something went wrong",
     });
-  }
+  } 
 };
 
 // Get all users from the database
