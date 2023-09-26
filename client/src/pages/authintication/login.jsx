@@ -1,11 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import authServices from "../../services/authServices";
 
 function Login() {
-  // const navigate = useNavigate();
-  const loginUrl = import.meta.env.VITE_USER_LOGIN;
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     email: "",
@@ -21,22 +20,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(loginUrl);
-      console.log(formData);
-      const response = await axios({
-        method: "post",
-        url: loginUrl,
-        data: formData,
-      });
-
-      const data = response.data;
-      console.log(data.payload);
-
-      // navigate("/", { replace: true });
-    } catch (err) {
-      console.log(err);
-    }
+    await authServices.LogIn(formData);
+    
   };
 
   return (

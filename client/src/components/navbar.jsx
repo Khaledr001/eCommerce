@@ -4,7 +4,7 @@ import Catagory from "./catagory";
 
 function Navbar() {
   const handleToggle = (e) => {
-    if (e.target.checked) setTheme("dark"); 
+    if (e.target.checked) setTheme("dark");
     else setTheme("light");
   };
 
@@ -49,7 +49,7 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl text-orange-500">
+          <a className="btn btn-ghost normal-case text-2xl text-orange-500">
             myStore
           </a>
 
@@ -65,13 +65,13 @@ function Navbar() {
           </ul>
         </div>
         <div className="navbar-center ">
-          <div className="form-control flex flex-row relative me-3 md:me-16 lg:me-24">
+          <div className="h-9 flex flex-row relative me-3 md:me-16 lg:me-24">
             <input
               type="text"
               placeholder="Search"
-              className="input input-bordered pe-7 ps-3 w-44 md:w-[300px] lg:w-[450px] "
+              className="input input-bordered h-9 pe-7 ps-3 w-44 md:w-[300px] lg:w-[450px] text-base"
             />
-            <span className="btn btn-ghost btn-circle absolute right-0 top-0">
+            <span className="absolute right-2 top-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"

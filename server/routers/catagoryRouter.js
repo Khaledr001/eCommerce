@@ -15,7 +15,7 @@ const catagoryRouter = express.Router();
 
 catagoryRouter.post("/add", isLoggedIn, isAdmin, validateCatagory, runValidation, createCatagory);
 
-catagoryRouter.get("/getall", getAllCatagory);
+catagoryRouter.get("/getall", isLoggedIn, getAllCatagory);
 
 catagoryRouter.get("/:slug", validateCatagory, runValidation, getACatagory);
 

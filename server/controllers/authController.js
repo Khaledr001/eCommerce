@@ -37,12 +37,17 @@ const handleLogin = async (req, res, next) => {
     }
     // Create token and save in http-cookie
     const accessToken = createJsonWebToken(user, "2d");
-    // res.cookie("accessToken", accessToken, {
+    res.header('accessToken', accessToken);
+    res.header('emasgsil', email);
+
+    // const cookieOptions = {
     //   maxAge: 2 * 24 * 60 * 60 * 1000,
     //   httpOnly: true,
-    //   secure: true,
+
     //   sameSite: "none",
-    // });
+    // };
+
+    // res.cookie('email', email, cookieOptions);
     // console.log(accessToken);
     req.user = user;
 
@@ -55,6 +60,7 @@ const handleLogin = async (req, res, next) => {
       statusCode: 200,
       message: "Login successful",
       payload: {
+        user,
         accessToken,
       },
     }); 

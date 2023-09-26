@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 // import "./style.css";
 
 function ImageUpload() {
@@ -67,7 +67,7 @@ function ImageUpload() {
       .catch((error) => console.log("error", error));
   };
 
-  const handleClick = (event) => {
+  const handleClick = () => {
     hiddenFileInput.current.click();
   };
 

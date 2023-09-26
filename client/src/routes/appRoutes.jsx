@@ -3,23 +3,25 @@ import HomePage from "../pages/homePage/home";
 import ErrorPage from "../pages/errorPage";
 import Login from "../pages/authintication/login";
 import Register from "../pages/authintication/register";
+import UserProfile from "../pages/profilePage/user";
+import RootPage from "../pages/rootPage/rootPage";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <HomePage />,
       errorPage: <ErrorPage />,
-      // children: [
-        // {
-        //   index: true,
-        //   element: <AboutPage />,
-        // },
+      children: [
+        {
+          path: "myprofile",
+          element: <UserProfile />,
+        },
         // {
         //   path: "courses",
         //   element: secureRouteWrapper(<CoursesPage />),
         // },
-      // ],
+      ],
     },
     {
       path: "/login",
@@ -28,7 +30,7 @@ export function AppRoutes() {
     {
       path: "/register",
       element: <Register />,
-    }
+    },
   ]);
 
   return <RouterProvider router={routes} />;

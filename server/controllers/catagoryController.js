@@ -32,6 +32,7 @@ const createCatagory = async (req, res, next) => {
 
 const getAllCatagory = async (req, res, next) => {
   try {
+    console.log(req.cookies);
     const catagory = await Catagory.find({});
     if (!catagory) {
       errorResponse(res, {
