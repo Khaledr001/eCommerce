@@ -9,7 +9,7 @@ const SingleBanner = ({ bannerimage, heading }) => {
         alt="noimg"
       />
       <div className="absolute top-[45%] left-[22%] translate-x-[-50%] translate-y-[-50%]">
-        <h1 className="text-orange-400 text-[100px] font-extralight sm:text-[50px] sm:text-center">
+        <h1 className="text-orange-400 text-[40px] lg:text-[80px] font-extralight">
           {heading}
         </h1>
       </div>

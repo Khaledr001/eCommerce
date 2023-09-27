@@ -7,22 +7,22 @@ import {RxDotFilled} from "react-icons/rx";
 function Carousel() {
   const slides = [
     {
-      url: ".././public/images/carosoul/iphone15pro.png",
+      url: "/images/carosoul/iphone15pro.png",
     },
     {
-      url: "./public/images/carosoul/iwatch.png",
+      url: "/images/carosoul/iwatch.png",
     },
     {
-      url: "./public/images/carosoul/imac.png",
+      url: "/images/carosoul/imac.png",
     },
     {
-      url: "./public/images/carosoul/headphone.jpg",
+      url: "/images/carosoul/headphone.jpg",
     },
     {
-      url: "./public/images/carosoul/camara.jpg",
+      url: "/images/carosoul/camara.jpg",
     },
     {
-      url: "./public/images/carosoul/shoes.jpg",
+      url: "/images/carosoul/shoes.jpg",
     },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);

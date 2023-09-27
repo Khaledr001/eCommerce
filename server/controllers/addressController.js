@@ -31,8 +31,9 @@ const addAddress = async (req, res, next) => {
 
 // Get all address of an user from the database
 const getAllAddress = async (req, res, next) => { 
-    try {
-        const addresses = await Address.find({});
+  try {
+      const userId = req.user._id;
+        const addresses = await Address.find({userId});
         if (!addresses) {
           errorResponse(res, {
             statusCode: 404,

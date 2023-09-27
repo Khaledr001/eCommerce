@@ -7,6 +7,8 @@ import UserProfile from "../pages/profilePage/user";
 // import RootPage from "../pages/rootPage/rootPage";
 import AccountSettings from "../components/userProfile/AccountSettings";
 import ChangePassword from "../components/userProfile/ChangePassword";
+import Order from "../components/userProfile/Order";
+import Address from "../components/userProfile/Address";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -40,6 +42,14 @@ export function AppRoutes() {
     {
       path: "/user/changepassword",
       element: <ChangePassword />,
+    },
+    {
+      path: "/user/yourorders",
+      element: <Order />,
+    },
+    {
+      path: "/user/address",
+      element: <Address />,
     },
     {
       path: "/user",

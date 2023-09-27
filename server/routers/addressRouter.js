@@ -12,7 +12,7 @@ addressRouter.post(
   addAddress
 );
 
-addressRouter.get("/all", isLoggedIn, isAdmin, getAllAddress);
+addressRouter.get("/all", isLoggedIn, getAllAddress);
 
 addressRouter.put("/update/:id", isLoggedIn, updateAddress);
 

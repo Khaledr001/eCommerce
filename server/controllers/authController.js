@@ -40,17 +40,17 @@ const handleLogin = async (req, res, next) => {
     res.header('accessToken', accessToken);
     res.header('emasgsil', email);
 
-    // const cookieOptions = {
-    //   maxAge: 2 * 24 * 60 * 60 * 1000,
-    //   httpOnly: true,
+    const cookieOptions = {
+      maxAge: 2 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
 
-    //   sameSite: "none",
-    // };
+      sameSite: "none",
+    };
 
-    // res.cookie('email', email, cookieOptions);
+    res.cookie('accessToken', accessToken, cookieOptions);
     // console.log(accessToken);
     req.user = user;
-
+    console.log(user);
     
     // const accessToke = req.cookies.accessToken;
     console.log("Login successful");

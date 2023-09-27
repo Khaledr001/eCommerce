@@ -34,7 +34,7 @@
 
 
 .usersidebar .s2 {
-    background-color: var(--col1);
+    background-color: orange;
     border-radius: 5px;
     cursor: pointer;
     color: white;
