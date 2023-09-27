@@ -7,10 +7,13 @@ const isLoggedIn = async (req, res, next) => {
   try {
     // looking for access token
     // const accessToken = req.header("Authorization");
-    const accessToken = req.cookies.accessToken;
+    let accessToken = req.cookies.accessToken;
     // console.log(accessToken);
     if (!accessToken) {
-      throw createError(401, "Access token not found please log in");
+      accessToken = req.headers.accesstoken;
+      if (!accessToken) {
+        throw createError(401, "Access token not found please log in");
+      }
     }
     // verifying token
     const decoded = jwt.verify(accessToken, jwtSecretKey);
@@ -39,20 +42,18 @@ const isLoggedOut = async (req, res, next) => {
   }
 };
 
-
-const isAdmin = async(req, res, next) => { 
+const isAdmin = async (req, res, next) => {
   try {
     const user = req?.user;
     // console.log(user);
-    if (user && user.role == 'admin') {
+    if (user && user.role == "admin") {
       next();
-    }
-    else {
+    } else {
       throw createError(403, "You are not admin to access this page");
     }
   } catch (error) {
     return next(error);
   }
-}
+};
 
 module.exports = { isLoggedIn, isLoggedOut, isAdmin };

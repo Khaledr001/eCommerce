@@ -25,14 +25,15 @@ const LogIn = async (formData) => {
       }
     );
 
-    const {user, accessToken} = response.data.payload;
+    const { user, accessToken } = response.data.payload;
     console.log(user, accessToken);
 
     // set access token to cookies and set user to local storage
     if (accessToken) {
       Axios.defaults.headers.common["Authorization"] = accessToken;
       Cookies.set(TOKEN_KEY, accessToken);
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
+      // localStorage.setItem("accessToken", JSON.stringify(accessToken));
     } else {
       _clearCredentials();
     }

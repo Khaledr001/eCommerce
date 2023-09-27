@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Catagory from "./catagory";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const handleToggle = (e) => {
@@ -49,9 +50,9 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-2xl text-orange-500">
+          <Link to="/" className="btn btn-ghost normal-case text-2xl text-orange-500">
             myStore
-          </a>
+          </Link>
 
           <ul className="menu menu-horizontal px-1 z-[1] hidden md:flex lg:flex">
             <li tabIndex={0}>
@@ -100,13 +101,13 @@ function Navbar() {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
               <li>
-                <a className="justify-between">
+                <Link to="/user" className="justify-between">
                   Profile
                   <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a>Logout</a>
+                <Link>Logout</Link>
               </li>
               <li>
                 <label className="swap swap-rotate ps-4">
