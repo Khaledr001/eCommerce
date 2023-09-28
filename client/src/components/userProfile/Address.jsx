@@ -15,6 +15,31 @@ const Address = () => {
       ...addressData,
       [id]: value,
     });
+    console.log(id, value);
+  };
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    try {
+      const shouldDelete = window.confirm(
+        "Are you sure you want to delete this address?"
+      );
+
+      if (shouldDelete) {
+        const { data } = await Axios({
+          method: "delete",
+          url: `/user/address/delete/${id}`,
+          headers: {
+            accessToken: accessToken,
+          },
+        });
+        const address = data.payload;
+        console.log(address);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -24,6 +49,7 @@ const Address = () => {
         {
           method: "post",
           url: "/user/address/add",
+          data: addressData,
           headers: {
             accessToken: accessToken,
           },
@@ -33,6 +59,7 @@ const Address = () => {
       const data = response.data;
       const address = data.payload;
       console.log(address);
+      setAddAddress(!addAddress);
     } catch (err) {
       console.log(err);
     }
@@ -84,6 +111,7 @@ const Address = () => {
                 {/* <span>{item.AddressLine3}</span> */}
                 <button
                   key={address._id}
+                  onClick={(e) => handleDelete(e, address._id)}
                   className="btn btn-circle btn-warning btn-outline absolute -right-2 -top-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -107,10 +135,9 @@ const Address = () => {
 
       {addAddress && (
         <div className="flex flex-col items-center w-full m-5 mt-10">
-          <form
-            onSubmit={handleSubmit}
-            className="w-full flex flex-col gap-5 justify-center items-center">
+          <form className="w-full flex flex-col gap-5 justify-center items-center">
             <input
+              // onSubmit={(e) => handleSubmit(e)}
               id="district"
               type="text"
               placeholder="District Name"
@@ -140,16 +167,15 @@ const Address = () => {
               placeholder="Address Line"
               onChange={handleChange}></textarea>
 
-            <div>
-              <button
-                type="submit"
-                onClick={() => {
-                  setAddAddress(!addAddress);
-                }}
-                className="btn btn-outline btn-success m-5 mt-10">
-                Save this address
-              </button>
-            </div>
+            <button
+              type="submit"
+              onClick={(e) => {
+                setAddAddress(!addAddress);
+                handleSubmit(e);
+              }}
+              className="btn btn-outline btn-success m-5 mt-10">
+              Save this address
+            </button>
           </form>
         </div>
       )}
