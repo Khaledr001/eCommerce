@@ -32,12 +32,12 @@ const createCatagory = async (req, res, next) => {
 
 const getAllCatagory = async (req, res, next) => {
   try {
-    console.log(req.cookies);
+    // console.log(req.cookies);
     const catagory = await Catagory.find({});
     if (!catagory) {
       errorResponse(res, {
         statusCode: 404,
-        message: "No catagory found",
+        message: "No catagory found", 
       });
     } else {
       successResponse(res, { 

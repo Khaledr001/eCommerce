@@ -18,7 +18,7 @@ function Catagory() {
     try {
       const response = await Axios.get(`${API_URL}`, { withCredentials: true }); 
       const data = response.data;
-      console.log(data);
+      // console.log(data);
       
       setCatagorys(data);
     } catch (crror) {
