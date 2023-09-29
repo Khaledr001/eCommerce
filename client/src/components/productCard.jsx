@@ -3,7 +3,7 @@
 
 import { Card } from "flowbite-react";
 import { Link } from "react-router-dom";
-import { FaBangladeshiTakaSign } from "react-icons/fa6";
+// import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { TbCurrencyTaka } from "react-icons/tb";
 
 export default function ECommerceCard({ product }) {

@@ -1,8 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Catagory from "./catagory";
 import { Link } from "react-router-dom";
 import { AiOutlineUser } from "react-icons/ai";
+import { PiWarningCircleBold } from "react-icons/pi";
 
 function Navbar() {
   const handleToggle = (e) => {
@@ -156,7 +158,12 @@ function Navbar() {
                 </Link>
               </li>
               <li>
-                <Link>Logout</Link>
+                <Link
+                  onClick={() =>
+                    document.getElementById("my_modal_5").showModal()
+                  }>
+                  Logout
+                </Link>
               </li>
               <li>
                 <label className="swap swap-rotate ps-4">
@@ -189,6 +196,21 @@ function Navbar() {
           </div>
         </div>
       </div>
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <div className="flex flex-col justify-center items-center">
+            <PiWarningCircleBold className="w-12 h-12 text-red-600"/>
+            <p className="py-4 text-xl font-bold">Are you sure you want to log out?</p>
+          </div>
+          <div className="modal-action ">
+            <button className="btn btn-error me-3">yes i'm sure</button>
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn ">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   );
 }

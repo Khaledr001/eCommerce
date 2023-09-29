@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import Axios from "../axios";
 
@@ -28,7 +29,7 @@ function Catagory() {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, ['catagorys']);
 
   return (
     <>
