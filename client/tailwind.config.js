@@ -14,7 +14,7 @@ export default {
     themes: [
       {
         dark: {
-          textcolor: "#fff",
+          textcolor: "#ffffff",
           default: "#84e896",
           primary: "#4b5563",
           secondary: "#ef9ec6",

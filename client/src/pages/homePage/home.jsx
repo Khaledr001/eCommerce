@@ -1,10 +1,9 @@
-import Navbar from "../../components/navbar";
 import Carousel from "../../components/carousel";
-import { Outlet } from "react-router-dom";
 import ECommerceCard from "../../components/productCard";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import Axios from "../../axios";
+import './home.css'
 
 function HomePage() {
   const accessToken = Cookies.get("access_token");
@@ -25,7 +24,7 @@ function HomePage() {
         { withCredentials: true }
       );
       const { products } = data.payload;
-      console.log(products);
+      // console.log(products);
 
       setAllProducts(products);
     } catch (err) {
@@ -38,10 +37,8 @@ function HomePage() {
   }, []);
 
   return (
-    <>
-      <Navbar />
+    <div id="home">
       <Carousel />
-      
       <div className="mb-10">
         <h1>All Products</h1>
         {allProducts.map((product) => {
@@ -52,7 +49,7 @@ function HomePage() {
           );
         })}
       </div>
-    </>
+    </div>
   );
 }
 

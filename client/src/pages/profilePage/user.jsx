@@ -26,12 +26,12 @@ const UserProfile = () => {
 
         {/* Main Content */}
         <div className="w-[100%] self-center lg:self-auto lg:w-[80%] border-2 border-solid rounded-md lg:min-h-[50vh] md:min-h-[50vh]">
-          {activepage === "accountsettings" && <AccountSettings />}
+          {/* {activepage === "accountsettings" && <AccountSettings />}
           {activepage === "changepassword" && <ChangePassword />}
           {activepage === "yourorders" && <YourOrders />}
           {activepage === "address" && <UserAddress />}
-          {activepage === "legalnotice" && <LegalNotice />}
-          {/* <Outlet /> */}
+          {activepage === "legalnotice" && <LegalNotice />} */}
+          <Outlet />
         </div>
       </div>
     </div>

@@ -9,55 +9,44 @@ import AccountSettings from "../components/userProfile/AccountSettings";
 import ChangePassword from "../components/userProfile/ChangePassword";
 import Order from "../components/userProfile/Order";
 import Address from "../components/userProfile/Address";
+import App from "../App";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
     {
       path: "/",
-      element: <HomePage />,
+      element: <App />,
       errorPage: <ErrorPage />,
       children: [
-        // {
-        //   path: "myprofile",
-        //   element: <UserProfile />,
-        // },
-        // {
-        //   path: "courses",
-        //   element: secureRouteWrapper(<CoursesPage />),
-        // },
-      ],
-    },
-    {
-      path: "/login",
-      element: <Login />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-    {
-      path: "/user/accountsettings",
-      element: <AccountSettings />,
-    },
-    {
-      path: "/user/changepassword",
-      element: <ChangePassword />,
-    },
-    {
-      path: "/user/yourorders",
-      element: <Order />,
-    },
-    {
-      path: "/user/address",
-      element: <Address />,
-    },
-    {
-      path: "/user",
-      element: <UserProfile />,
-      children: [
         {
-          // path: "/accountsettings",
-          // element: <AccountSettings />
+          path: "user",
+          element: <UserProfile />,
+          children: [
+            {
+              path: "accountsettings",
+              element: <AccountSettings />,
+            },
+            {
+              path: "changepassword",
+              element: <ChangePassword />,
+            },
+            {
+              path: "yourorders",
+              element: <Order />,
+            },
+            {
+              path: "address",
+              element: <Address />,
+            },
+          ],
+        },
+        {
+          path: "login",
+          element: <Login />,
+        },
+        {
+          path: "register",
+          element: <Register />,
         },
       ],
     },

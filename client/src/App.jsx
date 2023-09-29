@@ -1,12 +1,21 @@
-import './App.css'
-import HomePage from './pages/homePage/home';
-import { AppRoutes } from './routes/appRoutes';
+import "./App.css";
+import { Outlet, useLocation } from "react-router-dom";
+import HomePage from "./pages/homePage/home";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
-    <AppRoutes />
-    // <HomePage />
+    <>
+      <Navbar />
+      {pathname == "/" && <HomePage />}
+
+      <Outlet />
+      <Footer />
+    </>
   );
 }
 
-export default App
+export default App;

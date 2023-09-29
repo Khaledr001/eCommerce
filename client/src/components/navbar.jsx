@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Catagory from "./catagory";
 import { Link } from "react-router-dom";
-import { AiOutlineUser } from 'react-icons/ai'
+import { AiOutlineUser } from "react-icons/ai";
 
 function Navbar() {
   const handleToggle = (e) => {
@@ -21,11 +21,11 @@ function Navbar() {
   }, [theme]);
 
   return (
-    <div className="fixed z-10 top-0 right-0 left-0">
-      <div id="nav1" className="navbar bg-primary flex justify-center">
+    <div className="fixed shadow-lg z-10 top-0 right-0 left-0 ">
+      <div id="nav1" className="navbar bg-base-200 flex justify-center">
         <div className="navbar-start">
           <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost md:hidden lg:hidden">
+            <label tabIndex={0} className="btn btn-ghost  lg:hidden">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -49,6 +49,12 @@ function Navbar() {
                   <Catagory />
                 </ul>
               </li>
+              <li>
+                <a className="">About Us</a>
+              </li>
+              <li>
+                <a className="">Contact Us</a>
+              </li>
             </ul>
           </div>
           <Link
@@ -57,7 +63,7 @@ function Navbar() {
             myStore
           </Link>
 
-          <ul className="menu menu-horizontal px-1 z-[1] hidden md:flex lg:flex">
+          <ul className="menu menu-horizontal text-textcolor text-base z-[1] hidden lg:flex">
             <li tabIndex={0}>
               <details>
                 <summary>Catagory</summary>
@@ -66,14 +72,20 @@ function Navbar() {
                 </ul>
               </details>
             </li>
+            <li>
+              <a className="">About Us</a>
+            </li>
+            <li>
+              <a className="">Contact Us</a>
+            </li>
           </ul>
         </div>
         <div className="navbar-center ">
-          <div className="h-9 flex flex-row relative me-3 md:me-16 lg:me-24">
+          <div className="h-9 flex flex-row relative me-3 md:me-10 lg:me-16">
             <input
               type="text"
               placeholder="Search"
-              className="input input-bordered h-9 pe-7 ps-3 w-44 md:w-[300px] lg:w-[450px] text-base"
+              className="input input-bordered h-9 pe-7 ps-3 w-44 md:w-[350px] lg:w-[350px] text-base"
             />
             <span className="absolute right-2 top-2">
               <svg
