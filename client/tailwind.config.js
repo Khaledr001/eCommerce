@@ -14,6 +14,7 @@ export default {
     themes: [
       {
         dark: {
+          heading: "#9333ea",
           textcolor: "#ffffff",
           default: "#84e896",
           primary: "#4b5563",
@@ -29,6 +30,7 @@ export default {
       },
       {
         light: {
+          heading: "#9333ea",
           textcolor: "#000000",
           default: "#b728ff",
           primary: "#d1d5db",
@@ -36,12 +38,31 @@ export default {
           accent: "#f4cf49",
           neutral: "#2b313b",
           "base-100": "#f1eff5",
-          info: "#84d3eb",
+          info: "#2488e5",
           success: "#4ade80",
           warning: "#f1c841",
           error: "#db2455",
+
+          // primary: "#c1ecff",
+
+          // secondary: "#014e82",
+
+          // accent: "#2f22b7",
+
+          // neutral: "#2a2c3c",
+
+          // "base-100": "#ffffff",
+
+          // info: "#4a65e8",
+
+          // success: "#4ade80",
+
+          // warning: "#f2a840",
+
+          // error: "#f7363d",
         },
       },
+      // "light",
     ], // true: all themes | false: only light + dark | array: specific themes like this ["light", "dark", "cupcake"]
     darkTheme: "dark", // name of one of the included themes for dark mode
     base: true, // applies background color and foreground color for root element by default
@@ -52,4 +73,3 @@ export default {
     logs: true, // Shows info about daisyUI version and used config in the console when building your CSS
   },
 };
-

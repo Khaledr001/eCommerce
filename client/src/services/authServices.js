@@ -9,23 +9,9 @@ const _clearCredentials = () => {
   Cookies.remove(TOKEN_KEY);
 };
 
-const LogIn = async (formData) => {
+const LogIn = (data) => {
   try {
-    // console.log(loginUrl);
-    // console.log(formData);
-    // Axios post request
-    const response = await Axios(
-      {
-        method: "post",
-        url: "/auth/login",
-        data: formData,
-      },
-      {
-        withCredentials: true,
-      }
-    );
-
-    const { user, accessToken } = response.data.payload;
+    const { user, accessToken } = data.payload;
     console.log(user, accessToken);
 
     // set access token to cookies and set user to local storage
@@ -34,6 +20,7 @@ const LogIn = async (formData) => {
       Cookies.set(TOKEN_KEY, accessToken);
       localStorage.setItem("user", JSON.stringify(user));
       // localStorage.setItem("accessToken", JSON.stringify(accessToken));
+
     } else {
       _clearCredentials();
     }

@@ -1,188 +1,178 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import authSchema from "../../schemas";
+import { useUserRegister } from "../../hooks/useAuth";
+import ErrorPage from "../errorPage";
+import Loading from "../../components/Loading";
 
 function Register() {
-  const regUrl = import.meta.env.VITE_USER_REGISTER;
   const navigate = useNavigate();
 
-  const initialState = {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-    age: "",
-    role: "customer",
-  };
+  const { mutate, isLoading, isSuccess, error } = useUserRegister();
 
-  const [formData, setFormData] = useState(initialState);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [errors, setErrors] = useState({});
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: authSchema.registerSchema,
+    onSubmit: async (values) => {
+      mutate(values);
+    },
+  });
 
-  function handleChange(e) {
-    let newFormData = { ...formData };
-    newFormData[e.target.id] = e.target.value.trim();
-    setFormData(newFormData);
-    console.log(newFormData);
+  if (isSuccess) {
+    // const response = data?.data;
+    // authServices.LogIn(response);
+    // console.log(data?.data.payload);
+    navigate("/login", { replace: true });
   }
 
-  function handleConfirmPasswordChange(e) {
-    const newConfirmPassword = e.target.value;
-    setConfirmPassword(newConfirmPassword);
-  }
+  if (error) return <ErrorPage />;
 
-  const handleSubmit = async (e) => {
-    console.log("hi");
-    e.preventDefault();
-
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        console.log(formData);
-        const response = await axios({
-          method: "post",
-          url: regUrl,
-          data: formData,
-        });
-
-        const data = response.data;
-        console.log(data);
-
-        navigate("/login", { replace: true });
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      console.log(validationErrors);
-      setErrors(validationErrors);
-    }
-  };
-
-  const validateForm = () => {
-    const errors = {};
-    if (formData.name.trim() === "") {
-      errors.name = "Username is required";
-    }
-    if (formData.email.trim() === "") {
-      errors.email = "Email is required";
-    } else if (!isValidEmail(formData.email)) {
-      errors.email = "Invalid email format";
-    }
-
-    if (formData.password.trim() === "") {
-      errors.password = "Password is required";
-    } else if (formData.password != confirmPassword.trim()) {
-      errors.password = "Password does not match";
-    }
-
-    return errors;
-  };
-
-  const isValidEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  if (isLoading) return <Loading />;
 
   return (
     <>
-      <div className="flex flex-col align-middle justify-center max-w-2xl m-auto bg-gray-100 rounded-2xl shadow-lg py-10 px-5">
-        <div className=" p-5  w-full flex flex-col justify-center align-middle">
-          <div className="m-auto w-[60%] flex">
-            <div className="">
-              <h1 className="text-3xl font-bold m-auto text-[#1c2d5e]">
-                User Registration
-              </h1>
-              <p className="mt-5 text-md m-auto text-blue-500">Welcome!!!</p>
-            </div>
+      <div className="flex flex-col align-middle justify-center max-w-lg m-auto bg-primary rounded-2xl shadow-2xl py-10 px-2 mt-10">
+        <div className="py-5 w-full flex flex-col justify-center align-middle">
+          <div className="m-auto w-[82%] flex flex-col justify-center items-center">
+            <h1 className="text-4xl font-bold text-[#fa773a]">Welcome !!!</h1>
 
+            <p className="mt-5 text-xl text-info">Create your account here.</p>
           </div>
 
-          <form className="flex flex-col gap-4 mt-8" onSubmit={handleSubmit}>
-            <div className="w-[60%] m-auto">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6 mt-10">
+            <div className="w-[82%] m-auto rounded-md">
               <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
                 type="text"
-                placeholder="Full Name"
+                placeholder="Your full name"
                 required
-                onChange={(e) => handleChange(e)}
-                id="name"
-                value={formData.name}
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {touched.name && errors.name ? (
+                <p className="text-error text-sm ms-2 mt-1">{errors.name}</p>
+              ) : null}
             </div>
-            <div className="w-[60%] m-auto">
+            <div className="w-[82%] m-auto rounded-md">
               <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
                 type="email"
                 placeholder="Email"
                 required
-                onChange={(e) => handleChange(e)}
-                id="email"
-                value={formData.email}
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
+              {touched.email && errors.email ? (
+                <p className="text-error text-sm ms-2 mt-1">{errors.email}</p>
+              ) : null}
             </div>
-            <div className="w-[60%] m-auto">
+
+            <div className="w-[82%] m-auto rounded-md">
               <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
                 type="text"
                 placeholder="Phone Number"
                 required
-                onChange={(e) => handleChange(e)}
-                id="phoneNumber"
-                value={formData.phoneNumber}
+                name="phoneNumber"
+                value={values.phoneNumber}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-            </div>
-            <div className="w-[60%] m-auto">
-              <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
-                type="text"
-                placeholder="Password"
-                required
-                onChange={(e) => handleChange(e)}
-                id="password"
-                value={formData.password}
-              />
-            </div>
-            <div className="w-[60%] m-auto">
-              <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
-                type="text"
-                placeholder="Confirm Password"
-                required
-                onChange={(e) => handleConfirmPasswordChange(e)}
-                id="rPassword"
-                value={confirmPassword}
-              />
-            </div>
-            <div className="w-[60%] m-auto">
-              <input
-                className="h-[45px] w-full rounded-lg px-4 text-md border-none"
-                type="number"
-                placeholder="Age"
-                onChange={(e) => handleChange(e)}
-                id="age"
-                value={formData.age}
-              />
+              {touched.phoneNumber && errors.phoneNumber ? (
+                <p className="text-error text-sm ms-2 mt-1">
+                  {errors.phoneNumber}
+                </p>
+              ) : null}
             </div>
 
-            <div className="m-auto mt-5 w-[60%] bg-[#2064d8] hover:bg-orange-600 rounded-lg">
+            <div className="w-[82%] m-auto">
+              <input
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
+                type="password"
+                placeholder="Password"
+                required
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {touched.password && errors.password ? (
+                <p className="text-error text-sm ms-2 mt-1">
+                  {errors.password}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="w-[82%] m-auto">
+              <input
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
+                type="password"
+                placeholder="Confirm Password"
+                required
+                name="confirmPassword"
+                value={values.confirmPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {touched.confirmPassword && errors.confirmPassword ? (
+                <p className="text-error text-sm ms-2 mt-1">
+                  {errors.confirmPassword}
+                </p>
+              ) : null}
+            </div>
+
+            <div className="w-[82%] m-auto">
+              <input
+                className="input h-[45px] w-full rounded-lg px-4 text-md border-none"
+                type="number"
+                placeholder="age"
+                required
+                name="age"
+                value={values.age}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {touched.age && errors.age ? (
+                <p className="text-error text-sm ms-2 mt-1">{errors.age}</p>
+              ) : null}
+            </div>
+
+            <div className="m-auto mt-6 w-[82%] ">
               <button
-                className="h-[40px] w-full text-white text-center cursor-pointer"
-                type="submit">
-                Register
+                type="submit"
+                className="btn btn-info h-[40px] w-full text-textcolor text-center "
+                disabled={isSubmitting}>
+                Sign Up
               </button>
             </div>
           </form>
         </div>
 
-        <div className="mt-10 w-full px-5">
-          <div className="w-[60%] m-auto flex justify-between items-center text-[#002D74] text-md">
+        <div className="mt-5 w-full px-5">
+          <div className="w-[80%] m-auto flex justify-between items-center text-info text-md">
             <div>
-              <p>Already have an account?</p>
+              <p>Are you already a member?</p>
             </div>
             <div>
               <Link
-                to={"/Login"}
-                className="btn py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
+                to={"/login"}
+                className="btn border rounded-xl hover:scale-110 duration-300">
                 Login
               </Link>
             </div>

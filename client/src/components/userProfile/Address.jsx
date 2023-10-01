@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Axios from "../../axios";
 import Cookies from "js-cookie";
+import {useQuery} from 'react-query';
+import Loading from "../Loading";
 
 const Address = () => {
   const accessToken = Cookies.get("accessToken");
-  const [addresses, setAddresses] = useState([{}]);
   const [addAddress, setAddAddress] = useState(false);
   const [addressData, setAddressData] = useState({});
 
@@ -64,32 +65,32 @@ const Address = () => {
     }
   };
 
-  const getAddress = async () => {
-    try {
-      const { data } = await Axios(
-        {
-          method: "get",
-          url: "/user/address/all",
-          headers: {
-            accessToken: accessToken,
-          },
+  const getAddressesAxios = () => {
+    return Axios(
+      {
+        method: "get",
+        url: "/user/address/all",
+        headers: {
+          accessToken: accessToken,
         },
-        {
-          withCredentials: true,
-        }
-      );
-      const address = data.payload.addresses;
-      console.log(address);
-      setAddresses(address);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+      },
+      {
+        withCredentials: true,
+      }
+    );
+  }
 
-  useEffect(() => {
-    getAddress();
-  }, []);
-  //   const addresses = ["a", "b", "c", "d", "e", "f"];
+  const { isLoading, data, error } = useQuery("get-address", getAddressesAxios);
+
+  if (isLoading) { 
+    return <Loading />
+  }
+  if (error) {
+    return <h2>{error.message}</h2>
+  }
+
+  const addresses = data?.data.payload.addresses;
+  console.log(addresses);
 
   return (
     <div className="flex flex-col w-full h-full items-center">

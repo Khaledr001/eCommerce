@@ -2,8 +2,6 @@ import { Outlet, useParams } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import SingleBanner from "../../components/singleBanner";
 import UserSidebar from "../../components/userProfile/UserSidebar";
-import AccountSettings from "../../components/userProfile/AccountSettings";
-import ChangePassword from "../../components/userProfile/ChangePassword";
 
 const UserProfile = () => {
   const userProfile = JSON.parse(localStorage.getItem("user"));
@@ -26,11 +24,6 @@ const UserProfile = () => {
 
         {/* Main Content */}
         <div className="w-[100%] self-center lg:self-auto lg:w-[80%] border-2 border-solid rounded-md lg:min-h-[50vh] md:min-h-[50vh]">
-          {/* {activepage === "accountsettings" && <AccountSettings />}
-          {activepage === "changepassword" && <ChangePassword />}
-          {activepage === "yourorders" && <YourOrders />}
-          {activepage === "address" && <UserAddress />}
-          {activepage === "legalnotice" && <LegalNotice />} */}
           <Outlet />
         </div>
       </div>

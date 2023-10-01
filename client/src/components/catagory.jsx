@@ -1,41 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
 import Axios from "../axios";
+import { useQuery } from "react-query";
 
 function Catagory() {
-  const API_URL = import.meta.env.VITE_GET_CATAGORY;
-
-  const initialState = {
-    success: false,
-    message: "Catagory found",
-    payload: {
-      catagory: [],
-    },
+  const getCatagory = () => {
+    return Axios.get(`/catagory/getall`, { withCredentials: true });
   };
-
-  const [catagorys, setCatagorys] = useState(initialState);
-
-  const getData = async () => {
-    try {
-      const response = await Axios.get(`${API_URL}`, { withCredentials: true }); 
-      const data = response.data;
-      // console.log(data);
-      
-      setCatagorys(data);
-    } catch (crror) {
-      console.log(crror);
-    }
-  };
-
-  useEffect(() => {
-    getData();
-  }, ['catagorys']);
+  const { data } = useQuery("catagory-list", getCatagory);
+  const catagorys = data?.data.payload;
+  // console.log(catagorys);
 
   return (
     <>
-      {/* <h1>Category Information</h1> */}
-      {catagorys?.payload?.catagory.length > 0 ? (
-        catagorys.payload.catagory.map((catagory) => (
+      {catagorys?.catagory.length > 0 ? (
+        catagorys?.catagory.map((catagory) => (
           <li className="text-left" key={catagory._id}>
             {" "}
             <a href="">{catagory.catagoryName}</a>{" "}
@@ -47,15 +25,5 @@ function Catagory() {
     </>
   );
 }
-
-// const CatagoryCard = (data) => {
-//     return (
-//         <div>
-//             <h1>hello</h1>
-//             <h3>{data.slug}</h3>
-
-//         </div>
-//     )
-// }
 
 export default Catagory;
