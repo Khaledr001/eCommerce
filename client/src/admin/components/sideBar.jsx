@@ -5,6 +5,7 @@ import { LiaLuggageCartSolid } from "react-icons/lia";
 import { TbShoppingCartCopy } from "react-icons/tb";
 import { MdKeyboardArrowRight, MdKeyboardArrowDown } from "react-icons/md";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const [parrow, setParrow] = useState(false);
@@ -35,7 +36,7 @@ const SideBar = () => {
 
   return (
     <>
-      <div id="sidebar" className=" w-[290px] bg-base-200 h-[91vh] pt-5 px-3">
+      <div id="sidebar" className="  w-[290px] bg-base-200 h-full pt-5 px-3">
         <div className="grid gap-4">
           <div className="flex justify-start items-center gap-2 text-lg btn">
             <HiOutlineViewGrid className="text-2xl" />
@@ -127,14 +128,14 @@ const SideBar = () => {
             {!plist && (
               <div className="grid ps-9 pt-1">
                 <ul className="">
-                  <li className="btn btn-sm w-full flex justify-start">
+                  <Link to={"/admin/all-products"} className="btn btn-sm w-full flex justify-start">
                     {" "}
-                    <span>All Product</span>
-                  </li>
-                  <li className="btn btn-sm w-full flex justify-start">
+                    <span>All Products</span>
+                  </Link>
+                  <Link to={"/admin/add-product"} className="btn btn-sm w-full flex justify-start">
                     {" "}
-                    <span>Add products</span>
-                  </li>
+                    <span>Add product</span>
+                  </Link>
                   <li className="btn btn-sm w-full flex justify-start">
                     {" "}
                     <span>update Product</span>

@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import Axios from "../axios";
-import { useQuery } from "react-query";
+// import Axios from "../axios";
+// import { useQuery } from "react-query";
+import { useGetAllCatagory } from "../hooks/useCatagory";
 
 function Catagory() {
-  const getCatagory = () => {
-    return Axios.get(`/catagory/getall`, { withCredentials: true });
-  };
-  const { data } = useQuery("catagory-list", getCatagory);
+  
+  const { data } = useGetAllCatagory();
   const catagorys = data?.data.payload;
   // console.log(catagorys);
 

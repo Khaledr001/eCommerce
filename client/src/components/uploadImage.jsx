@@ -73,10 +73,10 @@ function ImageUpload() {
 
   return (
     <div className="p-8 flex justify-center items-center ">
-      <div className="border-2 border-dashed border-[#ccc] rounded-md p-2 flex flex-col justify-center items-center">
+      <div className="border-2 border-dashed border-[#ccc] rounded-md p-2 flex flex-col justify-center items-center h-[350px] w-[300px] ">
         <label
           htmlFor="image-upload-input"
-          className="text-2xl font-bold mb-4 cursor-pointer">
+          className="text-xl font-bold mb-4 cursor-pointer">
           {image ? image.name : "Choose an image"}
         </label>
         <div onClick={handleClick} style={{ cursor: "pointer" }}>
@@ -84,7 +84,7 @@ function ImageUpload() {
             <img
               src={URL.createObjectURL(image)}
               alt="upload image"
-              className="h-[200px] w-[200px] rounded-full"
+              className="h-[250px] w-[250px] "
             />
           ) : (
             <img
@@ -105,7 +105,7 @@ function ImageUpload() {
         </div>
 
         <button
-          className="bg-[#4CAF50] border-none text-white px-4 py-3 mt-4 cursor-pointer rounded-md hover:bg-[#3e8e41]"
+          className="btn btn-sm mt-3 btn-success"
           onClick={handleUploadButtonClick}>
           Upload
         </button>

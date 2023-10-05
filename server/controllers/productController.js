@@ -22,11 +22,12 @@ const createProduct = async (req, res, next) => {
       imagePath = `${defaultProductImagePath}/${imageName}`;
     }
 
+    console.log(catagory);
     const catagoryObj = await Catagory.findOne({ slug: slugCatagory });
     if (!catagoryObj) {
       return errorResponse(res, {
         statusCode: 404,
-        message: "Catagory not found",
+        message: "Catagory not found",  
       });
     }
     // console.log(catagoryObj);
@@ -41,7 +42,7 @@ const createProduct = async (req, res, next) => {
       image: imagePath,
       categoryId: catagoryObj._id,
     };
-    // console.log(ProductObj);
+    console.log(ProductObj);
 
     const product = await Product(ProductObj);
     await product.save();

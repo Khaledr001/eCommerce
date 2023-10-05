@@ -21,7 +21,7 @@ export default function ECommerceCard({ product }) {
           <p>{product.name}</p>
         </h5>
       </Link>
-      <div className="mt-2.5 flex items-center">
+      <div className=" flex items-center">
         {/* <SeeSourceCodeForSVG />
         <SeeSourceCodeForSVG />
         <SeeSourceCodeForSVG />
@@ -33,14 +33,14 @@ export default function ECommerceCard({ product }) {
         </span>
       </div>
       <div className="flex items-center justify-between">
-        <span className="text-3xl flex justify-center items-center font-bold text-gray-900 dark:text-white">
+        <span className="text-xl flex justify-center items-center font-bold text-gray-900 dark:text-white">
           <span>
             <TbCurrencyTaka className="" />
           </span> 
           <span>{product.price}</span>
         </span>
         <Link
-          className="rounded-lg bg-cyan-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-cyan-800 focus:outline-none focus:ring-4 focus:ring-cyan-300 dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+          className="rounded-lg btn h-10 btn-sm btn-info"
           to="#">
           <p>Add to cart</p>
         </Link>

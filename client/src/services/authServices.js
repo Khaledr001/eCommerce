@@ -2,7 +2,7 @@ import Axios from "../axios";
 import Cookies from "js-cookie";
 
 const TOKEN_KEY = "accessToken";
-const loginUrl = import.meta.env.VITE_USER_LOGIN;
+// const loginUrl = import.meta.env.VITE_USER_LOGIN;
 
 const _clearCredentials = () => {
   delete Axios.defaults.headers.common["Authorization"];
@@ -37,6 +37,8 @@ const performLogout = () => {
   window.location.reload();
 };
 
-const authServices = { LogIn, isUserLoggedIn, performLogout };
+const getAuthToken = () => Cookies.get(TOKEN_KEY);
+
+const authServices = { LogIn, isUserLoggedIn, performLogout, getAuthToken };
 
 export default authServices;

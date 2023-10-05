@@ -10,7 +10,7 @@ const isLoggedIn = async (req, res, next) => {
     let accessToken = req.cookies.accessToken;
     // console.log(accessToken);
     if (!accessToken) {
-      accessToken = req.headers.accesstoken;
+      accessToken = req.headers.authorization;
       // console.log(accessToken);
       if (!accessToken) {
         console.log("user not login");

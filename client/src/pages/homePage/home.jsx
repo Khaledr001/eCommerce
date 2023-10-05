@@ -1,28 +1,19 @@
 import Carousel from "../../components/carousel";
 import ECommerceCard from "../../components/productCard";
-import Axios from "../../axios";
 import "./home.css";
-import { useQuery } from "react-query";
 import Loading from "../../components/Loading";
+import { useGetAllProducts } from "../../hooks/useProduct";
 
 function HomePage() {
-  const getAllProducts = () => {
-    return Axios({
-      method: "GET",
-      url: "/product/getall",
-    });
-  };
-
-  const { data, isLoading } = useQuery("getAllProducts", getAllProducts);
+  const { data, isLoading } = useGetAllProducts();
   const allProducts = data?.data.payload;
   // console.log(allProducts);
-
   if (isLoading) return <Loading />;
 
   return (
-    <div >
+    <div>
       <Carousel />
-      <div id="home" className="mb-10" >
+      <div id="home" className="mb-10">
         <h1>All Products</h1>
         {allProducts?.products.map((product) => {
           return (

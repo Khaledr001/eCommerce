@@ -9,6 +9,8 @@ import Order from "../components/userProfile/Order";
 import Address from "../components/userProfile/Address";
 import App from "../App";
 import Admin from "../admin/admin";
+import AllProducts from "../admin/pages/products/allProducts";
+import AddProduct from "../admin/pages/products/addProduct";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -50,13 +52,19 @@ export function AppRoutes() {
       ],
     },
     {
-      path: '/admin',
+      path: "/admin",
       element: <Admin />,
       errorPage: <ErrorPage />,
       children: [
-        
-      ]
-    }
+        {
+          path: "all-products",
+          element: <AllProducts />,
+        },{
+          path: "add-product",
+          element: <AddProduct />,
+        },
+      ],
+    },
   ]);
 
   return <RouterProvider router={routes} />;
