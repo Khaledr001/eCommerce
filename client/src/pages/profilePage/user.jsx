@@ -10,21 +10,21 @@ const UserProfile = () => {
 
   return (
     <div>
-      <Navbar reloadnavbar={false} />
       <SingleBanner
         heading="My Profile"
         bannerimage="/images/banner/banner1.webp"
       />
+      <div className="mx-[5%] lg:mx-[10%] mt-10">
+        <div className="flex flex-col lg:flex-row w-full justify-between mt-8 gap-5">
+          {/* Right SideBar */}
+          <div className="lg:w-[20%] w-full border-2 border-solid rounded-md lg:min-h-[50vh] md:min-h-[50vh]">
+            <UserSidebar />
+          </div>
 
-      <div className="flex flex-col lg:flex-row w-full justify-between mt-8 gap-5">
-        {/* Right SideBar */}
-        <div className="lg:w-[20%] w-full self-center border-2 border-solid rounded-md min-h-[20vh] lg:min-h-[50vh]">
-          <UserSidebar activepage={activepage} />
-        </div>
-
-        {/* Main Content */}
-        <div className="w-[100%] self-center lg:self-auto lg:w-[80%] border-2 border-solid rounded-md lg:min-h-[50vh] md:min-h-[50vh]">
-          <Outlet />
+          {/* Main Content */}
+          <div className="w-[100%] py-10 self-center lg:self-auto lg:w-[80%] border-2 border-solid rounded-md lg:min-h-[50vh] md:min-h-[50vh]">
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>

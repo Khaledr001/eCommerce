@@ -40,7 +40,7 @@ function Carousel() {
     }
 
   return (
-    <div className=" h-[70vh] w-full pb-9 relative group">
+    <div className="h-[50vh] md:h-[70vh] lg:h-[70vh] w-full pb-9 relative group">
       <div
         style={{ backgroundImage: `url(${slides[currentIndex].url})` }}
         className="w-full h-full bg-center duration-500"></div>

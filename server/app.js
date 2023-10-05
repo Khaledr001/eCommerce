@@ -24,7 +24,7 @@ app.use(
 app.use(morgan("dev"));
 app.use(express.json()); 
 
-
+app.use("/public", express.static('public'));
 app.use("/seed/user", seedRouter);
 app.use("/api/users", userRouter);
 app.use("/api/user/address", addressRouter)

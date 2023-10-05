@@ -15,12 +15,23 @@ function Navbar() {
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
   );
+  const [sideBar, setSideBar] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
+
+  const handleSidebar = () => {
+    const sidebar = document.getElementById('sidebar');
+    setSideBar(!sideBar);
+    if (sideBar) {
+      sidebar.classList.add("hidden");
+    } else {
+      sidebar.classList.remove("hidden");
+    }
+  }
 
   return (
     <div className="fixed shadow-lg z-10 top-0 right-0 left-0 ">
@@ -34,7 +45,7 @@ function Navbar() {
 
           <label className="btn btn-sm btn-circle hover:bg-purple-400 swap swap-rotate">
             {/* this hidden checkbox controls the state */}
-            <input className="hidden" type="checkbox" />
+            <input onClick={handleSidebar} className="hidden" type="checkbox" />
 
             {/* hamburger icon */}
             <svg

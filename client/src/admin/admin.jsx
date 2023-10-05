@@ -1,4 +1,5 @@
 import NavBar from "./components/navBar";
+import SideBar from "./components/sideBar";
 
 const Admin = () => {
   return (
@@ -6,7 +7,9 @@ const Admin = () => {
       <NavBar />
       <div>
         {/* sideBar Component */}
-        <div></div>
+        <div>
+          <SideBar />
+        </div>
       </div>
     </>
   );

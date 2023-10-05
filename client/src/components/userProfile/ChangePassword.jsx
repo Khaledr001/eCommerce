@@ -1,73 +1,84 @@
 import { useState } from "react";
 import userServices from "../../services/userServices";
+import { useFormik } from "formik";
+import usrEdit from "../../schemas/userEdit";
 
 const ChangePassword = () => {
-  const userObj = localStorage.getItem("user");
-  const user = JSON.parse(userObj);
-  const initialUserData = {
-    name: user.name,
-    email: user.email,
-    phoneNumber: user.phoneNumber,
-    age: user.age,
-  };
-
-  const [userData, setUserData] = useState(initialUserData);
-  const [isEditable, setIsEditable] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
-  const toggleEdit = () => {
-    setIsEditable(!isEditable);
-  };
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setUserData({
-      ...userData,
-      [id]: value,
-    });
-    //   console.log(userData);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    userServices.updateUser(userData, user._id);
-  };
+    },
+    validationSchema: usrEdit.ChangePasswordSchema,
+    onSubmit: async (values) => {
+      console.log(values);
+      // mutate(values);
+    },
+  });
 
   return (
     <div className="accountsettings">
       <h1 className="mainhead1">Change Password</h1>
-
-      <div className="form-control ">
-        <label className="cursor-pointer label">
-          <span className="text-2xl me-5">Edit</span>
-          <input
-            type="checkbox"
-            onClick={toggleEdit}
-            className="toggle toggle-warning"
-          />
-        </label>
-      </div>
 
       <form className="form">
         <div className="form-group">
           <label htmlFor="oldpass">
             Old Password <span>*</span>
           </label>
-          <input type={showPassword ? "text" : "password"} />
+          <input
+            required
+            name="oldPassword"
+            value={values.oldPassword}
+            onChange={handleChange}
+            className="text-black"
+            type={showPassword ? "text" : "password"}
+          />
+          {touched.oldPassword && errors.oldPassword ? (
+            <p className="text-error text-sm ms-2 mt-1">{errors.oldPassword}</p>
+          ) : null}
         </div>
 
         <div className="form-group">
           <label htmlFor="newpass">
             New Password <span>*</span>
           </label>
-          <input type={showPassword ? "text" : "password"} />
+          <input
+            required
+            name="newPassword"
+            value={values.newPassword}
+            onChange={handleChange}
+            className="text-black"
+            type={showPassword ? "text" : "password"}
+          />
+          {touched.newPassword && errors.newPassword ? (
+            <p className="text-error text-sm ms-2 mt-1">{errors.newPassword}</p>
+          ) : null}
         </div>
 
         <div className="form-group">
           <label htmlFor="newpass">
             Confirm New Password <span>*</span>
           </label>
-          <input type={showPassword ? "text" : "password"} />
+          <input
+            required
+            name="confirmPassword"
+            value={values.confirmPassword}
+            onChange={handleChange}
+            className="text-black"
+            type={showPassword ? "text" : "password"}
+          />
+          {touched.confirmPassword && errors.confirmPassword ? (
+            <p className="text-error text-sm ms-2 mt-1">
+              {errors.confirmPassword}
+            </p>
+          ) : null}
         </div>
       </form>
 
@@ -84,7 +95,9 @@ const ChangePassword = () => {
         </label>
       </div>
 
-      <button className="btn mt-5 bg-green-400">Save Changes</button>
+      <button onClick={handleSubmit} className="btn mt-5 bg-success">
+        Save Changes
+      </button>
     </div>
   );
 };

@@ -15,6 +15,8 @@ const registerSchema = Yup.object({
     .oneOf([Yup.ref("password"), null], "Password does not match"),
 });
 
+
+
 const authSchema = { loginSchema, registerSchema };
 
 export default authSchema;

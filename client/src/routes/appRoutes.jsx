@@ -8,6 +8,7 @@ import ChangePassword from "../components/userProfile/ChangePassword";
 import Order from "../components/userProfile/Order";
 import Address from "../components/userProfile/Address";
 import App from "../App";
+import Admin from "../admin/admin";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -48,6 +49,14 @@ export function AppRoutes() {
         },
       ],
     },
+    {
+      path: '/admin',
+      element: <Admin />,
+      errorPage: <ErrorPage />,
+      children: [
+        
+      ]
+    }
   ]);
 
   return <RouterProvider router={routes} />;

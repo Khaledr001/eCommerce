@@ -53,7 +53,7 @@ const Order = () => {
   return (
     <div className="flex flex-col gap-5">
       <h1 className="self-center text-3xl text-orange-500">Your Order</h1>
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mx-3">
         <table className="table">
           {/* head */}
           <thead>

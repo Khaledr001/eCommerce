@@ -95,7 +95,7 @@ const Address = () => {
   return (
     <div className="flex flex-col w-full h-full items-center">
       <div className="self-center ">
-        <h1 className="text-3xl text-orange-400">
+        <h1 className="text-3xl text-orange-500">
           {!addAddress ? "Your Address" : "Add New Address"}{" "}
         </h1>
       </div>

@@ -29,7 +29,7 @@ const AccountSettings = () => {
       ...userData,
       [id]: value,
     });
-    //   console.log(userData);
+    // console.log(userData);
   };
 
   const handleSubmit = async (e) => {
@@ -44,7 +44,11 @@ const AccountSettings = () => {
       <div className="form-control ">
         <label className="cursor-pointer label">
           <span className="text-2xl me-5">Edit</span>
-          <input type="checkbox" onClick={toggleEdit} className="toggle toggle-warning" />
+          <input
+            type="checkbox"
+            onClick={toggleEdit}
+            className="toggle toggle-warning"
+          />
         </label>
       </div>
 
@@ -54,6 +58,7 @@ const AccountSettings = () => {
             Your Name <span>*</span>
           </label>
           <input
+            className="text-black"
             type="text"
             name="name"
             id="name"
@@ -68,6 +73,7 @@ const AccountSettings = () => {
             Phone/Mobile <span>*</span>
           </label>
           <input
+            className="text-black"
             type="number"
             name="phone"
             id="phoneNumber"
@@ -82,6 +88,7 @@ const AccountSettings = () => {
             Email <span>*</span>
           </label>
           <input
+            className="text-black"
             type="email"
             name="email"
             id="email"
@@ -96,6 +103,7 @@ const AccountSettings = () => {
             Your Age <span>*</span>
           </label>
           <input
+            className="text-black"
             type="number"
             name="age"
             id="age"

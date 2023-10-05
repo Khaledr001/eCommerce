@@ -12,8 +12,8 @@ export default function ECommerceCard({ product }) {
   return (
     <Card
       imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-      imgSrc="/images/products/apple-watch.png"
-      // imgSrc={imgPath}
+      // imgSrc="/images/products/apple-watch.png"
+      imgSrc={imgPath}
     >
       <Link to="#">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">

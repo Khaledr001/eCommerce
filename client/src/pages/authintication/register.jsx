@@ -21,11 +21,10 @@ function Register() {
     isSubmitting,
   } = useFormik({
     initialValues: {
-      email: "",
-      password: "",
     },
     validationSchema: authSchema.registerSchema,
     onSubmit: async (values) => {
+      console.log(values);
       mutate(values);
     },
   });

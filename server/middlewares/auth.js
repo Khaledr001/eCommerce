@@ -11,13 +11,16 @@ const isLoggedIn = async (req, res, next) => {
     // console.log(accessToken);
     if (!accessToken) {
       accessToken = req.headers.accesstoken;
+      // console.log(accessToken);
       if (!accessToken) {
+        console.log("user not login");
         throw createError(401, "Access token not found please log in");
       }
     }
     // verifying token
     const decoded = jwt.verify(accessToken, jwtSecretKey);
     if (!decoded) {
+      console.log("Access token is not valid");
       throw createError(401, "Invalid access token please login again");
     }
     req.user = decoded.payload;
