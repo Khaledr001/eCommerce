@@ -10,8 +10,7 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   const [parrow, setParrow] = useState(false);
   const [plist, setPlist] = useState(true);
-  const [carrow, setCarrow] = useState(false);
-  const [clist, setClist] = useState(true);
+
   const [uarrow, setUarrow] = useState(false);
   const [ulist, setUlist] = useState(true);
   const [oarrow, setOarrow] = useState(false);
@@ -21,10 +20,7 @@ const SideBar = () => {
     setParrow(!parrow);
     setPlist(!plist);
   };
-  const handleCatagory = () => {
-    setCarrow(!carrow);
-    setClist(!clist);
-  };
+
   const handleUser = () => {
     setUarrow(!uarrow);
     setUlist(!ulist);
@@ -78,37 +74,12 @@ const SideBar = () => {
           </div>
 
           <div>
-            <div
-              onClick={handleCatagory}
-              className="flex justify-between items-center btn pe-5">
+            <div className="flex justify-between items-center btn pe-5">
               <div className="flex justify-start items-center gap-2 text-lg">
                 <TfiLayoutListThumb className="text-2xl" />
-                <span>Catagory</span>
+                <Link to="/admin/allcategory">Category</Link>
               </div>
-              {!carrow ? (
-                <MdKeyboardArrowRight className="text-2xl" />
-              ) : (
-                <MdKeyboardArrowDown className="text-2xl" />
-              )}
             </div>
-            {!clist && (
-              <div className="grid ps-9 pt-1">
-                <ul className="">
-                  <li className="btn btn-sm w-full flex justify-start">
-                    {" "}
-                    <span>All Catagory</span>
-                  </li>
-                  <li className="btn btn-sm w-full flex justify-start">
-                    {" "}
-                    <span>Add catagory</span>
-                  </li>
-                  <li className="btn btn-sm w-full flex justify-start">
-                    {" "}
-                    <span>delete catagory</span>
-                  </li>
-                </ul>
-              </div>
-            )}
           </div>
 
           <div>
@@ -128,11 +99,15 @@ const SideBar = () => {
             {!plist && (
               <div className="grid ps-9 pt-1">
                 <ul className="">
-                  <Link to={"/admin/all-products"} className="btn btn-sm w-full flex justify-start">
+                  <Link
+                    to={"/admin/all-products"}
+                    className="btn btn-sm w-full flex justify-start">
                     {" "}
                     <span>All Products</span>
                   </Link>
-                  <Link to={"/admin/add-product"} className="btn btn-sm w-full flex justify-start">
+                  <Link
+                    to={"/admin/add-product"}
+                    className="btn btn-sm w-full flex justify-start">
                     {" "}
                     <span>Add product</span>
                   </Link>

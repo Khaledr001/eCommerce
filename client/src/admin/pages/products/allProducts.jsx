@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import { useGetAllProducts } from "../../../hooks/useProduct";
 import ProductCard from "../../components/productCard";

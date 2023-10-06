@@ -11,6 +11,7 @@ import App from "../App";
 import Admin from "../admin/admin";
 import AllProducts from "../admin/pages/products/allProducts";
 import AddProduct from "../admin/pages/products/addProduct";
+import AllCategory from "../admin/pages/category/allCategory";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -57,9 +58,14 @@ export function AppRoutes() {
       errorPage: <ErrorPage />,
       children: [
         {
+          path: "allcategory",
+          element: <AllCategory />,
+        },
+        {
           path: "all-products",
           element: <AllProducts />,
-        },{
+        },
+        {
           path: "add-product",
           element: <AddProduct />,
         },

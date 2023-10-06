@@ -11,7 +11,7 @@ const Admin = () => {
         <div>
           <SideBar />
         </div>
-        <div className="w-full p-5">
+        <div className="w-full py-4 lg:p-5">
           <Outlet />
       </div>
 

@@ -55,6 +55,31 @@ const getAllCatagory = async (req, res, next) => {
   }
 };
 
+const getAllCatagoryWithProduct = async (req, res, next) => {
+  try {
+    // console.log(req.cookies);
+    const catagory = await Catagory.find({});
+    if (!catagory) {
+      errorResponse(res, {
+        statusCode: 404,
+        message: "No catagory found",
+      });
+    } else {
+      successResponse(res, {
+        statusCode: 200,
+        message: "Catagory found",
+        payload: { catagory },
+      });
+      // res.status(200).json(catagory);
+    }
+  } catch (error) {
+    errorResponse(res, {
+      statusCode: 500,
+      message: "Something went wrong",
+    });
+  }
+};
+
 const getACatagory = async (req, res, next) => { 
     try {
         const slug = req.params.slug;
