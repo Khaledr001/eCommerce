@@ -21,7 +21,7 @@ catagoryRouter.get("/:slug", validateCatagory, runValidation, getACatagory);
 
 
 catagoryRouter.put("/update/:slug", isLoggedIn, isAdmin, updateCatagory);
-
+ 
 catagoryRouter.delete("/delete/:slug", isLoggedIn, isAdmin, deleteCatagory);
 
 module.exports = catagoryRouter;

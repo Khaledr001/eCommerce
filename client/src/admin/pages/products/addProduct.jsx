@@ -101,7 +101,7 @@ const AddProduct = () => {
                       <input
                         onChange={handleChange}
                         type="text"
-                        className="input input-info focus:outline-none text-lg"
+                        className="input input-info focus:outline-none text-lg focus:border-2"
                         name="name"
                         required
                       />
@@ -119,7 +119,7 @@ const AddProduct = () => {
                         }
                         name="catagory"
                         id="catagory"
-                        className="input input-info focus:outline-none text-lg">
+                        className="input input-info focus:outline-none text-lg focus:border-2">
                         <select name="" id="">
                           Select a Catagory
                         </select>
@@ -145,7 +145,7 @@ const AddProduct = () => {
                       <input
                         onChange={handleChange}
                         type="number"
-                        className="input input-info focus:outline-none text-lg"
+                        className="input input-info focus:outline-none text-lg focus:border-2"
                         name="price"
                         required
                       />
@@ -160,7 +160,7 @@ const AddProduct = () => {
                       <input
                         onChange={handleChange}
                         type="number"
-                        className="input input-info focus:outline-none text-lg"
+                        className="input input-info focus:outline-none text-lg focus:border-2"
                         name="quantity"
                         required
                       />
@@ -176,7 +176,7 @@ const AddProduct = () => {
                     <input
                       onChange={handleChange}
                       type="number"
-                      className="input input-info focus:outline-none text-lg"
+                      className="input input-info focus:outline-none text-lg focus:border-2"
                       name="shippingCost"
                       required
                     />
@@ -194,7 +194,7 @@ const AddProduct = () => {
                         rows={5}
                         required
                         name="description"
-                        className="textarea input-info focus:outline-none text-lg"
+                        className="textarea input-info focus:outline-none text-lg focus:border-2"
                         placeholder=""></textarea>
                       {errors.description ? (
                         <p className="text-error text-sm ms-2 mt-1">

@@ -18,16 +18,17 @@ const AllProducts = () => {
   return (
     <>
       <div className="px-5 w-full h-20 bg-base-200 flex justify-between items-center rounded-md">
-        <h1 className="text-4xl font-bold ">All Products Grid</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold  md:ms-5 lg:ms-5">All Products Grid</h1>
+        <h1 className="text-lg lg:text-xl text-success font-bold md:me-5 lg:me-5">Total Product : {allProducts?.products.length}</h1>
       </div>
 
-      <div className="flex justify-between items-center h-16 mt-5">
-        <div className="w-full">
-          <h1>{catagory}</h1>
+      <div className="flex justify-between items-center h-16 mt-5 gap-8">
+        <div className=" h-full">
+          <h1 className="text-base mg:text-xl lg:text-xl h-full btn cursor-default bg-base-200">{catagory}</h1>
         </div>
 
-        <div className="w-full">
-          <div className="flex flex-col gap-1 w-[30%] min-w-[150px]">
+        <div className="">
+          <div className="flex flex-col gap-1 w-[100%] min-w-[240px] md:min-w-[350px] lg:min-w-[350px]">
             <select
               onChange={(e) => setCatagory(e.target.value)}
               name="catagory"
