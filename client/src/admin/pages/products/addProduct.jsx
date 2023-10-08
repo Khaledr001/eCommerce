@@ -41,6 +41,11 @@ const AddProduct = () => {
     hiddenFileInput.current.click();
   };
 
+  if (productResponse.isSuccess) {
+    window.location.reload();
+    // window.alert('You product was successfully added');
+  }
+
   return (
     <>
       <div>

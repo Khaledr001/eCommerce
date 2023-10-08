@@ -5,6 +5,7 @@ const {
   updateUser,
   deleteUser,
   getAUser,
+  getAUserByEmail,
 } = require("../controllers/userController");
 const { validateUserRegistration } = require("../validations/userValidation");
 const { runValidation } = require("../validations/checkValidationRules");
@@ -24,10 +25,12 @@ userRouter.post(
 
 userRouter.get("/allusers", isLoggedIn, isAdmin, getAllUser);
 
+userRouter.get("/", isLoggedIn, getAUserByEmail);
+
 userRouter.get("/:id", isLoggedIn, getAUser);
 
 userRouter.put("/update/:id", isLoggedIn, updateUser);
 
-userRouter.delete("/delete/:id", isLoggedIn, deleteUser);
+userRouter.delete("/delete/:id", isLoggedIn, isAdmin, deleteUser);
 
 module.exports = userRouter;

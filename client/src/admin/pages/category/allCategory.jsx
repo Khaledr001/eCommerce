@@ -81,7 +81,7 @@ const AllCategory = () => {
           </form>
         </div>
 
-        <div className="w-full lg:w-[70%] bg-base-200 rounded-lg py-3">
+        <div className="w-full lg:w-[70%] py-3 border border-info rounded-lg">
           <div className="overflow-x-auto mx-3">
             <table className="table">
               {/* head */}

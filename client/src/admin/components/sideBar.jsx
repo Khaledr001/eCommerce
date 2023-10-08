@@ -58,11 +58,11 @@ const SideBar = () => {
                 <ul className="">
                   <li className="btn btn-sm w-full flex justify-start">
                     {" "}
-                    <span>All users</span>
+                    <Link to="/admin/allusers">All users</Link>
                   </li>
                   <li className="btn btn-sm w-full flex justify-start">
                     {" "}
-                    <span>update user</span>
+                    <Link to="/admin/updateuser">update user</Link>
                   </li>
                   <li className="btn btn-sm w-full flex justify-start">
                     {" "}

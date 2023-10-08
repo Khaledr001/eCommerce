@@ -1,50 +1,111 @@
 /* eslint-disable react/prop-types */
 "use client";
-
-import { Card } from "flowbite-react";
+import { TbShoppingCartCopy } from "react-icons/tb";
 import { Link } from "react-router-dom";
 // import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { MdEdit } from "react-icons/md";
 
-export default function ECommerceCard({ product }) {
+// export function ECommerceCard({ product }) {
+//   const imgPath = `http://localhost:6001${product.image}`;
+//   console.log(imgPath);
+//   return (
+//     <div className="w-full h-full max-w-[260px] max-h-[410px] flex flex-col justify-between bg-base-200 shadow-2xl p-5 rounded-md hover:scale-105 transition">
+//       <div className="">
+//         <img
+//           className="overflow-hidden rounded-lg sm:flex-[0_0_auto] h-[200px] w-[230px]"
+//           src={imgPath}
+//           alt="product image"
+//         />
+//       </div>
+//       <div className="h-full mt-5">
+//         <div>
+//           <p className="text-lg mt-2">{product.name} </p>
+//         </div>
+//         <div>
+//           <p className="text-lg text-success">
+//             Available : {product.quantity}{" "}
+//           </p>
+//         </div>
+//         <div>
+//           <p className="text-lg text-info">
+//             Ratting : <span className="badge badge-success ms-2">5.0</span>{" "}
+//           </p>
+//         </div>
+
+//         <div className="flex justify-between mt-2 items-center">
+//           <div className="flex items-center gap-1">
+//             <TbCurrencyTaka className="text-xl" />
+//             <p className="text-lg ">Price : {product.price} </p>
+//           </div>
+//           <div className="tooltip tooltip-top" data-tip="Add to cart">
+//             <button className="btn btn-sm btn-success btn-outline rounded-full">
+//               <TbShoppingCartCopy className="text-xl" />
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+const ProductCardHome = ({ product }) => {
   const imgPath = `http://localhost:6001${product.image}`;
   console.log(imgPath);
   return (
-    <Card
-      imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-      // imgSrc="/images/products/apple-watch.png"
-      imgSrc={imgPath}
-    >
-      <Link to="#">
-        <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          {/* <p>Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport</p> */}
-          <p>{product.name}</p>
-        </h5>
-      </Link>
-      <div className=" flex items-center">
-        {/* <SeeSourceCodeForSVG />
-        <SeeSourceCodeForSVG />
-        <SeeSourceCodeForSVG />
-        <SeeSourceCodeForSVG />
-        <SeeSourceCodeForSVG /> */}
-        <p className="text-black">Ratting -</p>
-        <span className="ml-2 mr-2 rounded bg-cyan-100 px-2 py-0.5 text-sm font-semibold text-cyan-800 dark:bg-cyan-200 dark:text-cyan-800">
-          <p>5.0</p>
-        </span>
+    <div
+      className=" flex flex-col h-full rounded-lg bg-base-200 p-4"
+      style={{
+        opacity: "1",
+        transform: "translateY(0px)",
+        transition: "box-shadow var(--transition)",
+      }}>
+      <div className="flex items-start gap-[14px] mb-2.5">
+        <div className="overflow-hidden rounded-lg bg-white border-solid border border-[#354585] flex flex-1 items-center justify-center">
+          <img src={imgPath} alt="Product Image" />
+        </div>
       </div>
-      <div className="flex items-center justify-between">
-        <span className="text-xl flex justify-center items-center font-bold text-gray-900 dark:text-white">
-          <span>
-            <TbCurrencyTaka className="" />
-          </span> 
-          <span>{product.price}</span>
-        </span>
-        <Link
-          className="rounded-lg btn h-10 btn-sm btn-info"
-          to="#">
-          <p>Add to cart</p>
-        </Link>
+      <a
+        className="text-lg !leading-[1.4] block max-w-[180px] transition hover:text-[#4F89FC] "
+        href="/product-editor">
+        {product.name}
+      </a>
+      <div className="flex flex-col flex-1 gap-2.5 mt-2.5">
+        <p className=" font-bold text-md leading-[1.4] text-green-400">
+          Available : {product.quantity}
+        </p>
+        <p className=" font-bold text-md leading-[1.4] text-[#4F89FC]">
+          Ratting : <span className="badge badge-success ms-2">5.0</span>
+        </p>
+        <div className="flex items-center">
+          <p className=" font-bold text-md leading-[1.4]">
+            Price : {product.price}
+          </p>
+          <TbCurrencyTaka className="text-lg" />
+        </div>
       </div>
-    </Card>
+      {/* <div className="">
+        <a
+          className=" btn btn-outline btn-info !text-sm"
+          href="/product-editor">
+          <MdEdit /> <span>Edit</span>
+        </a>
+        <button className="btn btn--outline red !text-sm">Delete</button>
+      </div> */}
+
+      <div className="grid grid-cols-2 gap-2 mt-4">
+        <div className="btn btn-sm btn-info btn-outline rounded-3xl">
+          <span>View</span>
+        </div>
+        <div className="tooltip tooltip-top" data-tip="Add to cart">
+          {" "}
+          <button className="btn min-w-[50px] btn-sm btn-success btn-outline rounded-2xl">
+            <TbShoppingCartCopy className="text-xl" />{" "}
+          </button>{" "}
+        </div>
+      </div>
+    </div>
   );
-}
+};
+
+export default ProductCardHome;

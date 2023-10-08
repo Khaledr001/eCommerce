@@ -12,6 +12,8 @@ import Admin from "../admin/admin";
 import AllProducts from "../admin/pages/products/allProducts";
 import AddProduct from "../admin/pages/products/addProduct";
 import AllCategory from "../admin/pages/category/allCategory";
+import AllUsers from "../admin/pages/users/allUser";
+import UpdateUser from "../admin/pages/users/updateUser";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -57,6 +59,14 @@ export function AppRoutes() {
       element: <Admin />,
       errorPage: <ErrorPage />,
       children: [
+        {
+          path: "allusers",
+          element: <AllUsers />,
+        },
+        {
+          path: "updateuser",
+          element: <UpdateUser />,
+        },
         {
           path: "allcategory",
           element: <AllCategory />,

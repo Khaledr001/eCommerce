@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import Loading from "../../../components/Loading";
 import { useGetAllProducts } from "../../../hooks/useProduct";
-import ProductCard from "../../components/productCard";
+import {ProductCard} from "../../components/productCard";
 import { useGetAllCatagory } from "../../../hooks/useCatagory";
 import { useState } from "react";
 
@@ -10,7 +10,7 @@ const AllProducts = () => {
   console.log(data);
   const allProducts = data?.data.payload;
 
-  const [catagory, setCatagory] = useState("Smart Phone");
+  const [catagory, setCatagory] = useState("All Products");
   const catagories = useGetAllCatagory();
   const allCatagory = catagories?.data?.data.payload;
 
@@ -18,13 +18,19 @@ const AllProducts = () => {
   return (
     <>
       <div className="px-5 w-full h-20 bg-base-200 flex justify-between items-center rounded-md">
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold  md:ms-5 lg:ms-5">All Products Grid</h1>
-        <h1 className="text-lg lg:text-xl text-success font-bold md:me-5 lg:me-5">Total Product : {allProducts?.products.length}</h1>
+        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold  md:ms-5 lg:ms-5">
+          All Products Grid
+        </h1>
+        <h1 className="text-lg lg:text-xl text-success font-bold md:me-5 lg:me-5">
+          Total Product : {allProducts?.products.length}
+        </h1>
       </div>
 
       <div className="flex justify-between items-center h-16 mt-5 gap-8">
         <div className=" h-full">
-          <h1 className="text-base mg:text-xl lg:text-xl h-full btn cursor-default bg-base-200">{catagory}</h1>
+          <h1 className="text-base mg:text-xl lg:text-xl h-full btn cursor-default bg-base-200">
+            {catagory}
+          </h1>
         </div>
 
         <div className="">
@@ -34,9 +40,9 @@ const AllProducts = () => {
               name="catagory"
               id="catagory"
               className="input input-info focus:outline-none text-lg">
-              <select name="" id="">
+              <option disabled selected>
                 Select a Catagory
-              </select>
+              </option>
               {allCatagory?.catagory.map((element) => {
                 return (
                   <option key={element.slug} value={element.catagoryName}>
@@ -49,10 +55,12 @@ const AllProducts = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 ">
+      <div className="mt-12 grid flex-1 items-start gap-[26px] mb-[30px] sm:grid-cols-2 md:grid-cols-3 md:mt-7 lg:grid-cols-4 2xl:grid-cols-6">
         {allProducts?.products.map((product) => {
           return (
-            <div key={product.slug} className="w-[23%] mt-10">
+            <div
+              key={product.slug}
+              className="transform transition duration-500 hover:scale-105 ">
               <ProductCard product={product} />
             </div>
           );

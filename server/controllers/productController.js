@@ -19,7 +19,7 @@ const createProduct = async (req, res, next) => {
     console.log(imageName);
     let imagePath = "";
     if (imageName) {
-      imagePath = `${defaultProductImagePath}/${imageName}`;
+      imagePath = `/public/images/products/${imageName}`;
     }
 
     console.log(catagory);
@@ -63,7 +63,7 @@ const createProduct = async (req, res, next) => {
 
 const getAllProduct = async (req, res, next) => {
   try {
-    const pageSize = req?.query?.pageSize ?? "10";
+    const pageSize = req?.query?.pageSize ?? "20";
     const currentPage = req?.query?.currentPage ?? "1";
     const aggregator = paginator(currentPage, pageSize);
     const products = await Product.aggregate(aggregator);

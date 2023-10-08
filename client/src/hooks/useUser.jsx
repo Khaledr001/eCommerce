@@ -35,18 +35,30 @@ const updateAUser = (id, formData) => {
 const deleteAUser = (id) => {
   return Axios(
     {
-      method: "PUT",
+      method: "DELETE",
       url: `/users/delete/${id}`,
     },
     { withCredentials: true }
   );
 };
 
-const getAUser = (id) => {
+const getAUserById = (id) => {
   return Axios(
     {
       method: "GET",
       url: `/users/${id}`,
+    },
+    { withCredentials: true }
+  );
+};
+const getAUserByEmail = (email) => {
+  return Axios(
+    {
+      method: "GET",
+      url: `/users`,
+      params: {
+        email: email,
+      },
     },
     { withCredentials: true }
   );
@@ -68,6 +80,10 @@ export const useDeleteAUser = () => {
   return useMutation(deleteAUser);
 };
 
-export const useGetAUser = () => {
-  return useQuery("getAUser", getAUser);
+export const useGetAUserById = () => {
+  return useQuery("getAUserById", getAUserById);
+};
+
+export const useGetAUserByEmail = () => {
+  return useQuery("getAUserByEmail", getAUserByEmail);
 };

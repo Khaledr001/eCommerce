@@ -5,14 +5,14 @@ const validateAddProduct = [
     .trim()
     .notEmpty()
     .withMessage("Name is required")
-    .isLength({ min: 3, max: 50 })
+    .isLength({ min: 3, max: 100 })
     .withMessage("Name should be between 3 and 50 characters long"),
 
   body("description")
     .trim()
     .notEmpty()
     .withMessage("Product description is required")
-    .isLength({ min: 3, max: 200 })
+    .isLength({ min: 3, max: 1000 })
     .withMessage("Name should be between 3 and 200 characters long"),
 
   body("price")

@@ -57,7 +57,7 @@ const userRegester = async (req, res, next) => {
 // Get all users from the database
 const getAllUser = async (req, res, next) => {
   try {
-    const pageSize = req?.query?.pageSize ?? "10";
+    const pageSize = req?.query?.pageSize ?? "50";
     const currentPage = req?.query?.currentPage ?? "1";
     const aggregator = paginator(currentPage, pageSize);
     const users = await User.aggregate(aggregator);
@@ -87,6 +87,31 @@ const getAUser = async (req, res, next) => {
   try {
     const userId = req.params.id;
     const user = await User.findById(userId);
+    if (!user) {
+      errorResponse(res, {
+        statusCode: 404,
+        message: "User doesn't found",
+      });
+    } else {
+      successResponse(res, {
+        statusCode: 200,
+        message: "User found",
+        payload: { user },
+      });
+    }
+  } catch (error) {
+    errorResponse(res, {
+      statusCode: 500,
+      message: "Something went wrong",
+    });
+  }
+};
+
+// Get a user by Email
+const getAUserByEmail = async (req, res, next) => {
+  try {
+    const userEmail = req?.query?.email;
+    const user = await User.findOne({email: userEmail});
     if (!user) {
       errorResponse(res, {
         statusCode: 404,
@@ -164,4 +189,5 @@ module.exports = {
   updateUser,
   deleteUser,
   getAUser,
+  getAUserByEmail,
 };
