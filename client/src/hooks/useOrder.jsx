@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "react-query";
 import Axios from "../axios";
 
-const createOrder = (id, orderDetails) => {
+const createOrder = ({id, orderDetails}) => {
   return Axios(
     {
       method: "POST",

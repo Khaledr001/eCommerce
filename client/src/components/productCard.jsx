@@ -1,57 +1,19 @@
 /* eslint-disable react/prop-types */
 "use client";
 import { TbShoppingCartCopy } from "react-icons/tb";
-import { Link } from "react-router-dom";
-// import { FaBangladeshiTakaSign } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
-import { MdEdit } from "react-icons/md";
-
-// export function ECommerceCard({ product }) {
-//   const imgPath = `http://localhost:6001${product.image}`;
-//   console.log(imgPath);
-//   return (
-//     <div className="w-full h-full max-w-[260px] max-h-[410px] flex flex-col justify-between bg-base-200 shadow-2xl p-5 rounded-md hover:scale-105 transition">
-//       <div className="">
-//         <img
-//           className="overflow-hidden rounded-lg sm:flex-[0_0_auto] h-[200px] w-[230px]"
-//           src={imgPath}
-//           alt="product image"
-//         />
-//       </div>
-//       <div className="h-full mt-5">
-//         <div>
-//           <p className="text-lg mt-2">{product.name} </p>
-//         </div>
-//         <div>
-//           <p className="text-lg text-success">
-//             Available : {product.quantity}{" "}
-//           </p>
-//         </div>
-//         <div>
-//           <p className="text-lg text-info">
-//             Ratting : <span className="badge badge-success ms-2">5.0</span>{" "}
-//           </p>
-//         </div>
-
-//         <div className="flex justify-between mt-2 items-center">
-//           <div className="flex items-center gap-1">
-//             <TbCurrencyTaka className="text-xl" />
-//             <p className="text-lg ">Price : {product.price} </p>
-//           </div>
-//           <div className="tooltip tooltip-top" data-tip="Add to cart">
-//             <button className="btn btn-sm btn-success btn-outline rounded-full">
-//               <TbShoppingCartCopy className="text-xl" />
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
 
 const ProductCardHome = ({ product }) => {
   const imgPath = `http://localhost:6001${product.image}`;
   console.log(imgPath);
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/product-view", { state: { product: product } });
+  };
+
   return (
     <div
       className=" flex flex-col h-full rounded-lg bg-base-200 p-4"
@@ -66,8 +28,8 @@ const ProductCardHome = ({ product }) => {
         </div>
       </div>
       <a
-        className="text-lg !leading-[1.4] block max-w-[180px] transition hover:text-[#4F89FC] "
-        href="/product-editor">
+        onClick={handleClick}
+        className="text-lg !leading-[1.4] block max-w-[180px] transition hover:text-[#4F89FC] ">
         {product.name}
       </a>
       <div className="flex flex-col flex-1 gap-2.5 mt-2.5">
@@ -84,17 +46,11 @@ const ProductCardHome = ({ product }) => {
           <TbCurrencyTaka className="text-lg" />
         </div>
       </div>
-      {/* <div className="">
-        <a
-          className=" btn btn-outline btn-info !text-sm"
-          href="/product-editor">
-          <MdEdit /> <span>Edit</span>
-        </a>
-        <button className="btn btn--outline red !text-sm">Delete</button>
-      </div> */}
 
       <div className="grid grid-cols-2 gap-2 mt-4">
-        <div className="btn btn-sm btn-info btn-outline rounded-3xl">
+        <div
+          onClick={handleClick}
+          className="btn btn-sm btn-info btn-outline rounded-3xl">
           <span>View</span>
         </div>
         <div className="tooltip tooltip-top" data-tip="Add to cart">

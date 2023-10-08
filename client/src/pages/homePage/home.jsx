@@ -18,7 +18,7 @@ function HomePage() {
           <h1 className="text-3xl">Featured Products</h1>
           <p className="text-lg mb-1">Check & Get Your Desired Product!</p>
         </div>
-        <div className="mt-12 grid flex-1 items-start gap-[26px] mb-[30px] sm:grid-cols-2 md:grid-cols-3 md:mt-7 lg:grid-cols-4 2xl:grid-cols-6">
+        <div className="mt-12 grid flex-1 items-start gap-[26px] mb-[30px] sm:grid-cols-2 md:grid-cols-3 md:mt-7 lg:grid-cols-4 2xl:grid-cols-5">
           {allProducts?.products.map((product) => {
             return (
               <div key={product.slug} className="transform transition duration-500 hover:scale-105">

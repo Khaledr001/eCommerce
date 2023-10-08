@@ -14,6 +14,8 @@ import AddProduct from "../admin/pages/products/addProduct";
 import AllCategory from "../admin/pages/category/allCategory";
 import AllUsers from "../admin/pages/users/allUser";
 import UpdateUser from "../admin/pages/users/updateUser";
+import ProductView from "../pages/product/productView";
+import Checkout from "../pages/order/checkout";
 
 export function AppRoutes() {
   const routes = createBrowserRouter([
@@ -43,6 +45,14 @@ export function AppRoutes() {
               element: <Address />,
             },
           ],
+        },
+        {
+          path: "product-view",
+          element: <ProductView />,
+        },
+        {
+          path: "checkout",
+          element: <Checkout />,
         },
         {
           path: "login",
